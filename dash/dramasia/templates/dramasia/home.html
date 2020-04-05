@@ -1,9 +1,27 @@
 {% extends "dramasia/index.html" %}
 {% load static %}
 
+{% block meta_description %}
+	<meta name="description" content="">
+{% endblock meta_description %}
+
+{% block meta_keyword %}
+	<meta name="keywords" content="">
+{% endblock meta_keyword %}
+
 {% block title %}
 	<title>dramAsia</title>
 {% endblock title %}
+
+{% block extra_css %}
+	<style>
+		.title-dramasia {
+			background: -webkit-linear-gradient(#c40886, #fc65d7);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+	</style>
+{% endblock extra_css %}
 
 {% block content %}
 	<!-- home -->

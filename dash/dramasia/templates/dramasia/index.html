@@ -17,20 +17,15 @@
 	<link rel="apple-touch-icon" sizes="114x114" href="{% static 'dramasia/icon/apple-touch-icon-114x114.png' %}">
 	<link rel="apple-touch-icon" sizes="144x144" href="{% static 'dramasia/icon/apple-touch-icon-144x144.png' %}">
 
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="author" content="dramAsia">
+	{% block meta_description %}
+	{% endblock meta_description %}
+
+	{% block meta_keyword %}
+	{% endblock meta_keyword %}
+<!--	<meta name="author" content="dramAsia">-->
 
 	{% block extra_css %}
     {% endblock extra_css %}
-
-	<style>
-		.title-dramasia {
-			background: -webkit-linear-gradient(#c40886, #fc65d7);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-		}
-	</style>
 
 </head>
 <body class="body">
