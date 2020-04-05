@@ -7,7 +7,7 @@
 					<div class="col-12">
 						<div class="header__content">
 							<!-- header logo -->
-							<a href="index.html" class="header__logo">
+							<a href="{% url 'home' %}" class="header__logo">
 <!--								<img src="{% static 'dramasia/img/logo.svg' %}" alt="">-->
 								<h1 style="color:white;">dram<b class="title-dramasia" >Asia</b></h1>
 							</a>
@@ -17,30 +17,25 @@
 							<ul class="header__nav">
 								<!-- dropdown -->
 								<li class="header__nav-item">
-									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Artikel</a>
+									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuMovie" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movie</a>
 
-									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuHome">
-										<li><a href="index.html">Home slideshow bg</a></li>
-										<li><a href="index2.html">Home static bg</a></li>
+									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMovie">
+										<li><a href="{% url 'movies_grid' %}">Movie Grid</a></li>
+										<li><a href="{% url 'movies_list' %}">Movie List</a></li>
 									</ul>
 								</li>
-								<!-- end dropdown -->
-
-								<!-- dropdown -->
 								<li class="header__nav-item">
-									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Drama List</a>
+									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuTvSeries" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Serial TV</a>
 
-									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
-										<li><a href="catalog1.html">Catalog Grid</a></li>
-										<li><a href="catalog2.html">Catalog List</a></li>
-										<li><a href="details1.html">Details Movie</a></li>
-										<li><a href="details2.html">Details TV Series</a></li>
+									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuTvSeries">
+										<li><a href="catalog1.html">Serial TV Grid</a></li>
+										<li><a href="catalog2.html">Serial TV List</a></li>
 									</ul>
 								</li>
 								<!-- end dropdown -->
 
 								<li class="header__nav-item">
-									<a href="pricing.html" class="header__nav-link">Cast</a>
+									<a href="pricing.html" class="header__nav-link">Pemeran</a>
 								</li>
 
 								<li class="header__nav-item">
@@ -67,9 +62,9 @@
 									<i class="icon ion-ios-search"></i>
 								</button>
 
-								<a href="signin.html" class="header__sign-in">
+								<a href="{% url 'login' %}" class="header__sign-in">
 									<i class="icon ion-ios-log-in"></i>
-									<span>sign in</span>
+									<span>Masuk</span>
 								</a>
 							</div>
 							<!-- end header auth -->
