@@ -28,6 +28,10 @@ urlpatterns = [
                   url(r'^ckeditor/', include('ckeditor_uploader.urls')),
                   url(r'^teh-olong/', admin.site.urls),
                   url(r'^$', views.home, name='home'),
+                  url(r'^login/$', views.login, name='login'),
+                  url(r'^register/$', views.register, name='register'),
+                  url(r'^movies-grid/$', views.griding_movie, name='movies_grid'),
+                  url(r'^movies-list/$', views.listing_movie, name='movies_list'),
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
                                                                                            document_root=settings.MEDIA_ROOT)
