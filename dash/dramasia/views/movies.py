@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render
-from dramasia.models import Drama
+from django.shortcuts import render, redirect
+from dramasia.models import Drama, DramaCast
 
 
 def listing_movie(request):
@@ -26,8 +26,18 @@ def griding_movie(request):
 
 
 def get_movie(request, pk):
+    movies = Drama.objects.filter(type=2).order_by('-updated')[:6]
     movie = Drama.objects.filter(id=pk).first()
+    cast = DramaCast.objects.filter(drama=movie)
     context = {
-        'movie': movie
+        'movies': movies,
+        'movie': movie,
+        'cast': cast
     }
     return render(request, 'dramasia/movies/movie-view.html', context)
+
+
+def post_review(request, pk):
+    rate = request.POST.get('rate')
+    print(rate)
+    return redirect('home')

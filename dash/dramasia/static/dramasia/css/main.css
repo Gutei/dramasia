@@ -166,7 +166,6 @@ ul {
 .b-description_readmore_button {
   cursor: pointer;
   display: block;
-  height: 24px;
   width: 100%;
   position: relative;
 }
