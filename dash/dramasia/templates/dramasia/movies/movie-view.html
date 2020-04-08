@@ -1,0 +1,282 @@
+{% extends "dramasia/index.html" %}
+{% load static %}
+
+{% block meta_description %}
+	<meta name="description" content="">
+{% endblock meta_description %}
+
+{% block meta_keyword %}
+	<meta name="keywords" content="">
+{% endblock meta_keyword %}
+
+{% block title %}
+	<title>dramAsia</title>
+{% endblock title %}
+
+{% block extra_css %}
+	<style>
+		.title-dramasia {
+			background: -webkit-linear-gradient(#c40886, #fc65d7);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+	</style>
+{% endblock extra_css %}
+
+{% block content %}
+
+	<!-- details -->
+	<section class="section details">
+		<!-- details background -->
+		<div class="details__bg" data-bg="{% static 'dramasia/img/home/home__bg.jpg' %}"></div>
+		<!-- end details background -->
+
+		<!-- details content -->
+		<div class="container">
+			<div class="row">
+				<!-- title -->
+				<div class="col-12">
+					<h1 class="details__title">{{ movie.title }}</h1>
+				</div>
+				<!-- end title -->
+
+				<!-- content -->
+				<div class="col-12 col-xl-6">
+					<div class="card card--details">
+						<div class="row">
+							<!-- card cover -->
+							<div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
+								<div class="card__cover">
+									<img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+								</div>
+							</div>
+							<!-- end card cover -->
+
+							<!-- card content -->
+							<div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-7">
+								<div class="card__content">
+									<div class="card__wrap">
+										<span class="card__rate"><i class="icon ion-ios-star"></i>{{ movie.mdl_score }}</span>
+
+										<ul class="card__list">
+											<li>{{ movie.get_type_display }}</li>
+											<li>{{ movie.rating }}</li>
+										</ul>
+									</div>
+
+									<ul class="card__meta">
+										<li class="price__item"><span>Genre:</span>
+											<a href="#">-</a>
+											<a href="#">-</a>
+										</li>
+										<li class="price__item"><span>Judul Asli:</span> {{ movie.native_title }}</li>
+										<li class="price__item"><span>Tahun Rilis:</span> {% if movie.airing_date  == False %} {{movie.airing_date}} {% else %} - {% endif %}</li>
+										<li class="price__item"><span>Durasi:</span> {{ movie.duration }}</li>
+										<li class="price__item"><span>Negara:</span> <a href="#">{{ movie.country }}</a> </li>
+									</ul>
+
+								</div>
+							</div>
+							<!-- end card content -->
+						</div>
+					</div>
+				</div>
+				<!-- end content -->
+
+				<div class="col-12 col-xl-6">
+					<h3 style="color:#fff">Deskripsi</h3>
+					<div class="card__description--details" style="color:rgba(255,255,255,0.7)">
+						{{ movie.description|safe }}
+					</div>
+				</div>
+
+				<div class="col-12" style="top:15px">
+					<!-- share -->
+					<div class="details__share">
+						<span class="details__share-title">Share with friends:</span>
+
+						<ul class="details__share-list">
+									<li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
+									<li class="instagram"><a href="#"><i class="icon ion-logo-instagram"></i></a></li>
+									<li class="twitter"><a href="#"><i class="icon ion-logo-twitter"></i></a></li>
+									<li class="vk"><a href="#"><i class="icon ion-logo-vk"></i></a></li>
+								</ul>
+					</div>
+					<!-- end share -->
+				</div>
+
+				<div class="col-12">
+					<div class="details__wrap">
+						<div class="price price--premium">
+							<div class="price__item price__item--first"><span>Pemeran</span></div>
+							<div class="row">
+									{% for c in cast %}
+										<!-- feature -->
+										<div class="col-12 col-md-4 col-lg-4">
+											<div class="feature">
+												<img class="feature__icon" src="{{ c.cast.image_url }}" style="width:75px;">
+												<div style="margin-left:20px">
+													<h3 class="feature__title" style="float:-25px;">{{ c.cast.name }}</h3>
+													<p class="feature__text">{{ c.role }}</p>
+													<p class="feature__text">Sebagai: {{ c.cast_as }}</p>
+												</div>
+											</div>
+										</div>
+										<!-- end feature -->
+									{% endfor %}
+							</div>
+							<a href="#" class="price__btn">Lihat Lebih</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- end details content -->
+	</section>
+	<!-- end details -->
+
+	<!-- content -->
+	<section class="content">
+		<div class="content__head">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<!-- content title -->
+						<h2 class="content__title">Discover</h2>
+						<!-- end content title -->
+
+						<!-- content tabs nav -->
+						<ul class="nav nav-tabs content__tabs" id="content__tabs" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Review</a>
+							</li>
+						</ul>
+						<!-- end content tabs nav -->
+
+						<!-- content mobile tabs nav -->
+						<div class="content__mobile-tabs" id="content__mobile-tabs">
+							<div class="content__mobile-tabs-btn dropdown-toggle" role="navigation" id="mobile-tabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<input type="button" value="Comments">
+								<span></span>
+							</div>
+
+							<div class="content__mobile-tabs-menu dropdown-menu" aria-labelledby="mobile-tabs">
+								<ul class="nav nav-tabs" role="tablist">
+									<li class="nav-item"><a class="nav-link active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Review</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- end content mobile tabs nav -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-lg-8 col-xl-8">
+					<!-- content tabs -->
+					<div class="tab-content" id="myTabContent">
+						<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
+							<div class="row">
+								<!-- reviews -->
+								<div class="col-12">
+									<div class="reviews">
+										<ul class="reviews__list">
+											<li class="reviews__item">
+												<div class="reviews__autor">
+													<img class="reviews__avatar" src="{% static 'dramasia/img/user.png' %}" alt="">
+													<span class="reviews__name">Best Marvel movie in my opinion</span>
+													<span class="reviews__time">24.08.2018, 17:53 by John Doe</span>
+
+													<span class="reviews__rating"><i class="icon ion-ios-star"></i>8.4</span>
+												</div>
+												<p class="reviews__text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+											</li>
+
+											<li class="reviews__item">
+												<div class="reviews__autor">
+													<img class="reviews__avatar" src="{% static 'dramasia/img/user.png' %}" alt="">
+													<span class="reviews__name">Best Marvel movie in my opinion</span>
+													<span class="reviews__time">24.08.2018, 17:53 by John Doe</span>
+
+													<span class="reviews__rating"><i class="icon ion-ios-star"></i>9.0</span>
+												</div>
+												<p class="reviews__text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+											</li>
+
+											<li class="reviews__item">
+												<div class="reviews__autor">
+													<img class="reviews__avatar" src="{% static 'dramasia/img/user.png' %}" alt="">
+													<span class="reviews__name">Best Marvel movie in my opinion</span>
+													<span class="reviews__time">24.08.2018, 17:53 by John Doe</span>
+
+													<span class="reviews__rating"><i class="icon ion-ios-star"></i>7.5</span>
+												</div>
+												<p class="reviews__text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+											</li>
+										</ul>
+
+										<form method="post" action="{% url 'post_review_movie' movie.id %}" class="form">
+											{% csrf_token %}
+											<input type="text" class="form__input" placeholder="Title">
+											<textarea class="form__textarea" placeholder="Review"></textarea>
+											<div class="form__slider">
+												<div class="form__slider-rating" id="slider__rating"></div>
+												<div class="form__slider-value" id="form__slider-value"><span></span></div>
+<!--												<input id="input-rate" type="range">-->
+											</div>
+											<button type="submit" class="form__btn">Send</button>
+										</form>
+									</div>
+								</div>
+								<!-- end reviews -->
+							</div>
+						</div>
+					</div>
+					<!-- end content tabs -->
+				</div>
+
+				<!-- sidebar -->
+				<div class="col-12 col-lg-4 col-xl-4">
+					<div class="row">
+						<!-- section title -->
+						<div class="col-12">
+							<h2 class="section__title section__title--sidebar">Movie Terbaru</h2>
+						</div>
+						<!-- end section title -->
+
+						{% for m in movies %}
+						<div class="col-6 col-sm-4 col-lg-6">
+							<div class="card">
+								<div class="card__cover">
+									{% if m.image_url %}
+										<img src="{{ m.image_url }}" alt="{{m.title}}">
+										{% else %}
+										<img src="{% static 'dramasia/img/no-image/curtains.jpg' %}" alt="{{m.title}}">
+									{% endif %}
+
+									<a href="#" class="card__play">
+										<i class="icon ion-ios-happy"></i>
+									</a>
+								</div>
+								<div class="card__content">
+									<h3 class="card__title"><a href="#">{{ m.title }}</a></h3>
+									<span class="card__category">
+										<a href="#">{{ m.country}}</a>
+									</span>
+									<span class="card__rate"><i class="icon ion-ios-star"></i>{{ m.mdl_score }}</span>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+				<!-- end sidebar -->
+			</div>
+		</div>
+	</section>
+	<!-- end content -->
+
+{% endblock content %}

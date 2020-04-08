@@ -473,6 +473,7 @@ $(document).ready(function () {
 
 			thirdSlider.noUiSlider.on('update', function( values, handle ) {
 				thirdValue.innerHTML = values[handle];
+				console.log(values[handle]);
 			});
 		} else {
 			return false;
