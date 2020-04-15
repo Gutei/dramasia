@@ -31,7 +31,6 @@ django_select2
 django-cors-headers
 elasticsearch-dsl
 django-colorfield
-mysqlclient
 social-auth-app-django
 django-extensions
 django-social-share
