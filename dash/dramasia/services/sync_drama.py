@@ -30,7 +30,7 @@ def get_data_mdl(mdl_id):
                 image_url=drama_json['poster'],
                 network=drama_json['network'],
                 duration=drama_json['duration'],
-                mdl_score=0 if not drama_json['score'] else drama_json['score'],
+                mdl_score=0 if not drama_json['score'] or drama_json['score'] == 'N/A' else drama_json['score'],
                 rating='' if not drama_json['rating'] else drama_json['rating'],
                 country='' if not drama_json['country'] else drama_json['country'],
                 airing_date=drama_json['aired'],
