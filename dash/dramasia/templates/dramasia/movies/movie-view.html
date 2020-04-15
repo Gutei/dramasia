@@ -223,6 +223,7 @@
 											<input type="text" class="form__input" placeholder="Title">
 											<textarea class="form__textarea" placeholder="Review"></textarea>
 											<div class="form__slider">
+												<input type="hidden" name="rate" id="rate-val">
 												<div class="form__slider-rating" id="slider__rating"></div>
 												<div class="form__slider-value" id="form__slider-value"><span></span></div>
 <!--												<input id="input-rate" type="range">-->
@@ -280,3 +281,30 @@
 	<!-- end content -->
 
 {% endblock content %}
+
+{% block extra_js %}
+	<script>
+		$(document).ready(() => {
+
+			$('#rate-val').val($('#form__slider-value').text())
+
+			var myElement = document.getElementById('form__slider-value');
+			if(window.addEventListener) {
+			   // Normal browsers
+			   myElement.addEventListener('DOMSubtreeModified', contentChanged, false);
+			} else
+			   if(window.attachEvent) {
+				  // IE
+				  myElement.attachEvent('DOMSubtreeModified', contentChanged);
+			   }
+
+			function contentChanged() {
+			   // this function will run each time the content of the DIV changes
+			   $('#rate-val').val($('#form__slider-value').text())
+			}
+
+
+
+		})
+	</script>
+{% endblock extra_js %}

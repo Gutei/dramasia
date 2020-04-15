@@ -1,3 +1,4 @@
+import base64
 import requests
 from dramasia.models import Drama, DramaTag, Genre, DramaGenre, Cast, DramaCast
 
@@ -16,6 +17,10 @@ def get_data_mdl(mdl_id):
             if drama:
                 return None
 
+            if drama_json['poster'] and drama_json['poster'] != '':
+                drama_image_binary = base64.b64encode(requests.get(drama_json['poster']).content)
+
+
             drama = Drama(
                 mdl_id=mdl_id,
                 title=drama_json['title'],
@@ -29,7 +34,8 @@ def get_data_mdl(mdl_id):
                 rating='' if not drama_json['rating'] else drama_json['rating'],
                 country='' if not drama_json['country'] else drama_json['country'],
                 airing_date=drama_json['aired'],
-                total_episode=drama_json['episodes']
+                total_episode=drama_json['episodes'],
+                image_binary = drama_image_binary,
             )
 
             drama.save()
@@ -55,9 +61,13 @@ def get_data_mdl(mdl_id):
                     act_name = c['name'].split(' in ')
                     if not cast:
                         cast_name = act_name[0]
+
+                        cast_image_binary = base64.b64encode(requests.get(c['image']).content)
+
                         cast = Cast(
                             image_url=c['image'],
-                            name=cast_name
+                            name=cast_name,
+                            image_binary=cast_image_binary,
                         )
                         cast.save()
 
