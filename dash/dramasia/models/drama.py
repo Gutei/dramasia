@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.template.defaultfilters import slugify
 
 class Drama(models.Model):
 
@@ -31,6 +32,7 @@ class Drama(models.Model):
     website = models.TextField(null=True, blank=True)
     total_episode = models.PositiveIntegerField(default=0)
     duration = models.CharField(max_length=128, null=True, blank=True)
+    slug = models.SlugField(max_length=512, blank=True, null=True,)
     is_publish = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -40,6 +42,13 @@ class Drama(models.Model):
 
     def __str__(self):
         return '{}'.format(self.title)
+
+    def save(self, *args, **kwargs):
+        uid = self.id.hex[:4]
+
+        self.slug = '{}-{}'.format(uid, slugify(self.title))
+
+        super(Drama, self).save(*args, **kwargs)
 
 class DramaTag(models.Model):
 
@@ -91,6 +100,7 @@ class Cast(models.Model):
     id_ime = models.CharField(max_length=256, null=True, blank=True)
     birth_date = models.DateTimeField(null=True, blank=True)
     biodata = RichTextUploadingField(blank=True, null=True, extra_plugins=['uploadimage'],)
+    slug = models.SlugField(max_length=512, blank=True, null=True,)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -99,6 +109,13 @@ class Cast(models.Model):
 
     def __str__(self):
         return '{}'.format(self.name)
+
+    def save(self, *args, **kwargs):
+        uid = self.id.hex[:4]
+
+        self.slug = '{}-{}'.format(uid, slugify(self.name))
+
+        super(Cast, self).save(*args, **kwargs)
 
 
 class DramaCast(models.Model):
