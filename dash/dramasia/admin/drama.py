@@ -26,10 +26,10 @@ class DramaAdmin(admin.ModelAdmin):
     def get_image(self, obj):
         if obj.image:
             image = obj.image.url
-            return mark_safe("<img src='{}' width='30'>".format(image))
+            return mark_safe("<img src='data:image/png;base64,{}' width='30'>".format(image))
         elif obj.image_binary:
             image = obj.image_binary
-            return mark_safe("<img src='{}' width='30'>".format(image))
+            return mark_safe("<img src='data:image/png;base64,{}' width='30'>".format(image))
 
         return '-'
 
