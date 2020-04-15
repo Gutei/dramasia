@@ -27,8 +27,8 @@ class DramaAdmin(admin.ModelAdmin):
         if obj.image:
             image = obj.image.url
             return mark_safe("<img src='{}' width='30'>".format(image))
-        elif obj.image_url:
-            image = obj.image_url
+        elif obj.image_binary:
+            image = obj.image_binary
             return mark_safe("<img src='{}' width='30'>".format(image))
 
         return '-'
@@ -47,8 +47,8 @@ class CastAdmin(admin.ModelAdmin):
         if obj.image:
             image = obj.image.url
             return mark_safe("<img src='{}' width='30'>".format(image))
-        elif obj.image_url:
-            image = obj.image_url
+        elif obj.image_binary:
+            image = obj.image_binary
             return mark_safe("<img src='{}' width='30'>".format(image))
 
         return '-'
