@@ -19,7 +19,6 @@ pyqrcode
 pypng
 django-googledrive-storage
 django-storages[google]
-firebase-admin
 celery==4.2.0
 django_celery_results
 redis
