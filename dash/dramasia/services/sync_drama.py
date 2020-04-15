@@ -35,7 +35,7 @@ def get_data_mdl(mdl_id):
                 country='' if not drama_json['country'] else drama_json['country'],
                 airing_date=drama_json['aired'],
                 total_episode=drama_json['episodes'],
-                image_binary = drama_image_binary,
+                image_binary = drama_image_binary.decode(),
             )
 
             drama.save()
@@ -67,7 +67,7 @@ def get_data_mdl(mdl_id):
                         cast = Cast(
                             image_url=c['image'],
                             name=cast_name,
-                            image_binary=cast_image_binary,
+                            image_binary=cast_image_binary.decode(),
                         )
                         cast.save()
 
