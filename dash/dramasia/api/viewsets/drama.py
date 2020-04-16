@@ -80,10 +80,33 @@ class GenreViewSet(viewsets.ModelViewSet):
 
     def retrieve(self, request, pk=None):
         """
-        Use this to get genre detail with each dramas those contain this genre.
+        Use this to get all dramas those contain this genre.
         ---
             Header:
                 x-token: "xxxxxx"
+            ------------------------
+            returns:
+
+            This will returns Drama objects
+
+            [
+                {
+                    "drama" : {...}
+                }
+            ]
+
+            And with the pagination
+
+            {
+              "count": 5,
+              "next": null,
+              "previous": null,
+              "results": [
+                {
+                  "drama": {...}
+                }
+              ]
+            }
         """
         if not request.user.is_superuser:
 

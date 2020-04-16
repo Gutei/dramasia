@@ -53,4 +53,4 @@ class DramaGenreSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DramaGenre
-        fields = ('drama', 'genre')
+        fields = ('drama',)
