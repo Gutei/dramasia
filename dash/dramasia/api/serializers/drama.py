@@ -15,7 +15,7 @@ class DramaCastSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DramaCast
-        exclude = ('drama',)
+        exclude = ('drama', 'id',)
 
 class DramaSerializer(serializers.ModelSerializer):
 
