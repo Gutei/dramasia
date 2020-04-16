@@ -132,3 +132,15 @@ class DramaCast(models.Model):
 
     def __str__(self):
         return '{}'.format(self.drama.title, self.cast.name)
+
+
+class MdlDrama(models.Model):
+    id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
+    mdl_id = models.CharField(max_length=128, null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'mdl_drama'
+        verbose_name = 'Sync from MDL'
+

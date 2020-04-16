@@ -1,6 +1,7 @@
 from django.utils.html import mark_safe
 from django.contrib import admin
-from dramasia.models import Drama, DramaTag, Genre, DramaGenre, Cast, DramaCast, Season, DramaSeason
+from dramasia.models import Drama, DramaTag, Genre, DramaGenre, Cast, DramaCast, Season, DramaSeason, MdlDrama
+from dramasia.tasks import sync_mdl
 
 class SeasonInline(admin.TabularInline):
     model = DramaSeason
@@ -72,3 +73,17 @@ class SeasonAdmin(admin.ModelAdmin):
     inlines = [
         SeasonInline,
     ]
+
+
+@admin.register(MdlDrama, site=admin.site)
+class MdlDramaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'created')
+    search_fields = ('id', 'mdl_id')
+    list_filter = ('created',)
+    exclude = ('log',)
+    change_form_template = "admin/mdldrama/change_form.html"
+
+    def save_model(self, request, obj, form, change):
+        # custom stuff here
+        sync_mdl.apply_async((obj.mal_id,))
+        super().save_model(request, obj, form, change)
