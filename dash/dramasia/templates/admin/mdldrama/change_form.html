@@ -1,0 +1,46 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+{% block field_sets %}
+
+{{ block.super }}
+<div style="padding:10px; background:#FFFFFF; padding:15px;">
+    <div class="form-row" style="width:500px; overflow-x:scroll;">
+        <div>
+            <img src="https://www.euphonime.com/static/euphonime/servant/modred-chibi.png" width="150" style="float:left;">
+        </div>
+        <div>
+            <div style="border:1px solid red; border-radius:5px; width:300px; float:right; padding:10px; color:red; background:white;">
+                <div style="width:500px;">
+                    <h3>MORDRED v0.3.28<br>DORAMASIA API SYNC</h3>
+                </div>
+                <br>
+                Harap digunakan dengan bijak ya, mastaa...!<br>
+                Proses sinkronisasi dijalankan di background service.<br><br>
+                Penggunaan fitur ini bukan untuk becanda ya mastaa,<br>
+                karena bisa berbahaya bagi jasmani dan roh anda.<br><br>
+                Proses ini nge-pull data di MDL.<br>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<p class="waiting">Sabar...</p>
+<script>
+    jQuery(document).ready(() => {
+    console.log('ok')
+    jQuery('.waiting').hide();
+    jQuery('input[name="_save"]').val('Mulai');
+    jQuery('input[name="_addanother"]').hide();
+    jQuery('input[name="_continue"]').hide();
+
+    jQuery('input[name="_save"]').click(() => {
+        jQuery('input[name="_save"]').hide();
+        jQuery('.waiting').show();
+    })
+    })
+</script>
+{% endblock %}
+
+{% block after_field_sets %}
+
+{% endblock %}
