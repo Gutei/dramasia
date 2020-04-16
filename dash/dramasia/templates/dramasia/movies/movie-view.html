@@ -2,7 +2,12 @@
 {% load static %}
 
 {% block meta_description %}
-	<meta name="description" content="">
+	<meta name="description" content="{{ movie.description|striptags|safe|truncatewords:20 }}">
+	<meta property="og:title" content="{{ movie.title|safe }}"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="doramAsia" />
+    <meta property="og:image" content="{{ movie.image.url }}">
+    <meta property="og:description" content="{{ movie.description|striptags|safe|truncatewords:20 }}">
 {% endblock meta_description %}
 
 {% block meta_keyword %}
@@ -10,7 +15,7 @@
 {% endblock meta_keyword %}
 
 {% block title %}
-	<title>dramAsia</title>
+	<title>{{ movie.title|safe }}</title>
 {% endblock title %}
 
 {% block extra_css %}
