@@ -44,7 +44,7 @@ class DramaAdmin(admin.ModelAdmin):
 @admin.register(Cast, site=admin.site)
 class CastAdmin(admin.ModelAdmin):
     list_display = ('name', 'get_image',)
-    search_fields = ('title',)
+    search_fields = ('name',)
     list_per_page = 10
 
     def get_image(self, obj):
