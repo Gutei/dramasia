@@ -54,12 +54,12 @@
 									</a>
 								</div>
 								<div class="card__content">
-									<h3 class="card__title"><a href="#">{{t.title}}</a></h3>
+									<h3 class="card__title"><a href="{% url 'get_movie' t.slug %}">{{t.title}}</a></h3>
 <!--									<span class="card__category">-->
 <!--										<a href="#">Action</a>-->
 <!--										<a href="#">Triler</a>-->
 <!--									</span>-->
-									<span class="card__rate"><i class="icon ion-ios-star"></i>t.mdl_score</span>
+									<span class="card__rate"><i class="icon ion-ios-star"></i>{{t.mdl_score}}</span>
 								</div>
 							</div>
 							<!-- end card -->
@@ -136,7 +136,7 @@
 									<div class="col-12 col-sm-4">
 										<div class="card__cover">
 											<img src="{{d.image.url}}" alt="" height="250">
-											<a href="#" class="card__play">
+											<a href="{% url 'get_movie' d.slug %}" class="card__play">
 												<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
 											</a>
 										</div>
@@ -144,7 +144,7 @@
 
 									<div class="col-12 col-sm-8">
 										<div class="card__content">
-											<h3 class="card__title"><a href="#">{{d.title}}</a></h3>
+											<h3 class="card__title"><a href="{% url 'get_movie' d.slug %}">{{d.title}}</a></h3>
 <!--											<span class="card__category">-->
 <!--												<a href="#">Action</a>-->
 <!--												<a href="#">Triler</a>-->
