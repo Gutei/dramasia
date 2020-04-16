@@ -180,8 +180,8 @@
 						<div class="row">
 							<div class="col-12 col-sm-4">
 								<div class="card__cover">
-										{% if m.image_url %}
-										<img src="{{ m.image_url }}" alt="{{m.title}}">
+										{% if m.image %}
+										<img src="{{ m.image.url }}" alt="{{m.title}}">
 										{% else %}
 										<img src="{% static 'dramasia/img/no-image/curtains.jpg' %}" alt="{{m.title}}">
 										{% endif %}
