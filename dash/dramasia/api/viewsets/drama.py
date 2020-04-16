@@ -5,6 +5,7 @@ from dramasia.api.serializers.drama import DramaSerializer, GenreSerializer, Dra
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework import status
+from rest_framework.pagination import (LimitOffsetPagination, PageNumberPagination)
 
 class DramaViewSet(viewsets.ModelViewSet):
     queryset = Drama.objects.filter(is_publish=True).order_by('-updated')
@@ -95,6 +96,8 @@ class GenreViewSet(viewsets.ModelViewSet):
 
         genre = Genre.objects.filter(id=pk).first()
         drama_genre = DramaGenre.objects.filter(genre=genre)
-        serializer = DramaGenreSerializer(drama_genre, many=True)
 
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        page = self.paginate_queryset(drama_genre)
+        serializer = DramaGenreSerializer(page, many=True)
+
+        return self.get_paginated_response(serializer.data)
