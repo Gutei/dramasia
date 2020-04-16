@@ -29,7 +29,7 @@ def griding_movie(request):
 
 def get_movie(request, pk):
     movies = Drama.objects.filter(is_publish=True).order_by('-updated')[:6]
-    movie = Drama.objects.filter(id=pk).first()
+    movie = Drama.objects.filter(slug=pk).first()
     cast = DramaCast.objects.filter(drama=movie)
     context = {
         'movies': movies,

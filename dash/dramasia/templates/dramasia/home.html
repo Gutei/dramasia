@@ -43,12 +43,13 @@
 
 				<div class="col-12">
 					<div class="owl-carousel home__carousel">
+						{% for t in this_season %}
 						<div class="item">
 							<!-- card -->
 							<div class="card card--big">
 								<div class="card__cover">
-									<img src="{% static 'dramasia/img/covers/cover.jpg' %}" alt="">
-									<a href="#" class="card__play">
+									<img src="{{t.image.url}}" alt="">
+									<a href="{% url 'get_movie' t.slug %}" class="card__play">
 										<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
 									</a>
 								</div>
@@ -63,68 +64,7 @@
 							</div>
 							<!-- end card -->
 						</div>
-
-						<div class="item">
-							<!-- card -->
-							<div class="card card--big">
-								<div class="card__cover">
-									<img src="{% static 'dramasia/img/covers/cover2.jpg' %}" alt="">
-									<a href="#" class="card__play">
-										<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
-									</a>
-								</div>
-								<div class="card__content">
-									<h3 class="card__title"><a href="#">Benched</a></h3>
-									<span class="card__category">
-										<a href="#">Comedy</a>
-									</span>
-									<span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>
-								</div>
-							</div>
-							<!-- end card -->
-						</div>
-
-						<div class="item">
-							<!-- card -->
-							<div class="card card--big">
-								<div class="card__cover">
-									<img src="{% static 'dramasia/img/covers/cover3.jpg' %}" alt="">
-									<a href="#" class="card__play">
-										<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
-									</a>
-								</div>
-								<div class="card__content">
-									<h3 class="card__title"><a href="#">Whitney</a></h3>
-									<span class="card__category">
-										<a href="#">Romance</a>
-										<a href="#">Drama</a>
-									</span>
-									<span class="card__rate"><i class="icon ion-ios-star"></i>6.3</span>
-								</div>
-							</div>
-							<!-- end card -->
-						</div>
-
-						<div class="item">
-							<!-- card -->
-							<div class="card card--big">
-								<div class="card__cover">
-									<img src="{% static 'dramasia/img/covers/cover4.jpg' %}" alt="">
-									<a href="#" class="card__play">
-										<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
-									</a>
-								</div>
-								<div class="card__content">
-									<h3 class="card__title"><a href="#">Blindspotting</a></h3>
-									<span class="card__category">
-										<a href="#">Comedy</a>
-										<a href="#">Drama</a>
-									</span>
-									<span class="card__rate"><i class="icon ion-ios-star"></i>7.9</span>
-								</div>
-							</div>
-							<!-- end card -->
-						</div>
+						{% endfor %}
 					</div>
 				</div>
 			</div>
@@ -1203,148 +1143,148 @@
 	<!-- end content -->
 
 	<!-- expected premiere -->
-	<section class="section section--bg" data-bg="img/section/section.jpg' %}">
-		<div class="container">
-			<div class="row">
-				<!-- section title -->
-				<div class="col-12">
-					<h2 class="section__title">Expected premiere</h2>
-				</div>
-				<!-- end section title -->
+<!--	<section class="section section&#45;&#45;bg" data-bg="img/section/section.jpg' %}">-->
+<!--		<div class="container">-->
+<!--			<div class="row">-->
+<!--				&lt;!&ndash; section title &ndash;&gt;-->
+<!--				<div class="col-12">-->
+<!--					<h2 class="section__title">Expected premiere</h2>-->
+<!--				</div>-->
+<!--				&lt;!&ndash; end section title &ndash;&gt;-->
 
-				<!-- card -->
-				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-					<div class="card">
-						<div class="card__cover">
-							<img src="{% static 'dramasia/img/covers/cover.jpg' %}" alt="">
-							<a href="#" class="card__play">
-								<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
-							</a>
-						</div>
-						<div class="card__content">
-							<h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
-							<span class="card__category">
-								<a href="#">Action</a>
-								<a href="#">Triler</a>
-							</span>
-							<span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
-						</div>
-					</div>
-				</div>
-				<!-- end card -->
+<!--				&lt;!&ndash; card &ndash;&gt;-->
+<!--				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">-->
+<!--					<div class="card">-->
+<!--						<div class="card__cover">-->
+<!--							<img src="{% static 'dramasia/img/covers/cover.jpg' %}" alt="">-->
+<!--							<a href="#" class="card__play">-->
+<!--								<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">-->
+<!--							</a>-->
+<!--						</div>-->
+<!--						<div class="card__content">-->
+<!--							<h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>-->
+<!--							<span class="card__category">-->
+<!--								<a href="#">Action</a>-->
+<!--								<a href="#">Triler</a>-->
+<!--							</span>-->
+<!--							<span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				&lt;!&ndash; end card &ndash;&gt;-->
 
-				<!-- card -->
-				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-					<div class="card">
-						<div class="card__cover">
-							<img src="{% static 'dramasia/img/covers/cover3.jpg' %}" alt="">
-							<a href="#" class="card__play">
-								<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
-							</a>
-						</div>
-						<div class="card__content">
-							<h3 class="card__title"><a href="#">Benched</a></h3>
-							<span class="card__category">
-								<a href="#">Comedy</a>
-							</span>
-							<span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>
-						</div>
-					</div>
-				</div>
-				<!-- end card -->
+<!--				&lt;!&ndash; card &ndash;&gt;-->
+<!--				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">-->
+<!--					<div class="card">-->
+<!--						<div class="card__cover">-->
+<!--							<img src="{% static 'dramasia/img/covers/cover3.jpg' %}" alt="">-->
+<!--							<a href="#" class="card__play">-->
+<!--								<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">-->
+<!--							</a>-->
+<!--						</div>-->
+<!--						<div class="card__content">-->
+<!--							<h3 class="card__title"><a href="#">Benched</a></h3>-->
+<!--							<span class="card__category">-->
+<!--								<a href="#">Comedy</a>-->
+<!--							</span>-->
+<!--							<span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				&lt;!&ndash; end card &ndash;&gt;-->
 
-				<!-- card -->
-				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-					<div class="card">
-						<div class="card__cover">
-							<img src="{% static 'dramasia/img/covers/cover2.jpg' %}" alt="">
-							<a href="#" class="card__play">
-								<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
-							</a>
-						</div>
-						<div class="card__content">
-							<h3 class="card__title"><a href="#">Whitney</a></h3>
-							<span class="card__category">
-								<a href="#">Romance</a>
-								<a href="#">Drama</a>
-								<a href="#">Music</a>
-							</span>
-							<span class="card__rate"><i class="icon ion-ios-star"></i>6.3</span>
-						</div>
-					</div>
-				</div>
-				<!-- end card -->
+<!--				&lt;!&ndash; card &ndash;&gt;-->
+<!--				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">-->
+<!--					<div class="card">-->
+<!--						<div class="card__cover">-->
+<!--							<img src="{% static 'dramasia/img/covers/cover2.jpg' %}" alt="">-->
+<!--							<a href="#" class="card__play">-->
+<!--								<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">-->
+<!--							</a>-->
+<!--						</div>-->
+<!--						<div class="card__content">-->
+<!--							<h3 class="card__title"><a href="#">Whitney</a></h3>-->
+<!--							<span class="card__category">-->
+<!--								<a href="#">Romance</a>-->
+<!--								<a href="#">Drama</a>-->
+<!--								<a href="#">Music</a>-->
+<!--							</span>-->
+<!--							<span class="card__rate"><i class="icon ion-ios-star"></i>6.3</span>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				&lt;!&ndash; end card &ndash;&gt;-->
 
-				<!-- card -->
-				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-					<div class="card">
-						<div class="card__cover">
-							<img src="{% static 'dramasia/img/covers/cover6.jpg' %}" alt="">
-							<a href="#" class="card__play">
-								<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
-							</a>
-						</div>
-						<div class="card__content">
-							<h3 class="card__title"><a href="#">Blindspotting</a></h3>
-							<span class="card__category">
-								<a href="#">Comedy</a>
-								<a href="#">Drama</a>
-							</span>
-							<span class="card__rate"><i class="icon ion-ios-star"></i>7.9</span>
-						</div>
-					</div>
-				</div>
-				<!-- end card -->
+<!--				&lt;!&ndash; card &ndash;&gt;-->
+<!--				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">-->
+<!--					<div class="card">-->
+<!--						<div class="card__cover">-->
+<!--							<img src="{% static 'dramasia/img/covers/cover6.jpg' %}" alt="">-->
+<!--							<a href="#" class="card__play">-->
+<!--								<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">-->
+<!--							</a>-->
+<!--						</div>-->
+<!--						<div class="card__content">-->
+<!--							<h3 class="card__title"><a href="#">Blindspotting</a></h3>-->
+<!--							<span class="card__category">-->
+<!--								<a href="#">Comedy</a>-->
+<!--								<a href="#">Drama</a>-->
+<!--							</span>-->
+<!--							<span class="card__rate"><i class="icon ion-ios-star"></i>7.9</span>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				&lt;!&ndash; end card &ndash;&gt;-->
 
-				<!-- card -->
-				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-					<div class="card">
-						<div class="card__cover">
-							<img src="{% static 'dramasia/img/covers/cover4.jpg' %}" alt="">
-							<a href="#" class="card__play">
-								<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
-							</a>
-						</div>
-						<div class="card__content">
-							<h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
-							<span class="card__category">
-								<a href="#">Action</a>
-								<a href="#">Triler</a>
-							</span>
-							<span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
-						</div>
-					</div>
-				</div>
-				<!-- end card -->
+<!--				&lt;!&ndash; card &ndash;&gt;-->
+<!--				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">-->
+<!--					<div class="card">-->
+<!--						<div class="card__cover">-->
+<!--							<img src="{% static 'dramasia/img/covers/cover4.jpg' %}" alt="">-->
+<!--							<a href="#" class="card__play">-->
+<!--								<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">-->
+<!--							</a>-->
+<!--						</div>-->
+<!--						<div class="card__content">-->
+<!--							<h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>-->
+<!--							<span class="card__category">-->
+<!--								<a href="#">Action</a>-->
+<!--								<a href="#">Triler</a>-->
+<!--							</span>-->
+<!--							<span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				&lt;!&ndash; end card &ndash;&gt;-->
 
-				<!-- card -->
-				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-					<div class="card">
-						<div class="card__cover">
-							<img src="{% static 'dramasia/img/covers/cover5.jpg' %}" alt="">
-							<a href="#" class="card__play">
-								<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
-							</a>
-						</div>
-						<div class="card__content">
-							<h3 class="card__title"><a href="#">Benched</a></h3>
-							<span class="card__category">
-								<a href="#">Comedy</a>
-							</span>
-							<span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>
-						</div>
-					</div>
-				</div>
-				<!-- end card -->
+<!--				&lt;!&ndash; card &ndash;&gt;-->
+<!--				<div class="col-6 col-sm-4 col-lg-3 col-xl-2">-->
+<!--					<div class="card">-->
+<!--						<div class="card__cover">-->
+<!--							<img src="{% static 'dramasia/img/covers/cover5.jpg' %}" alt="">-->
+<!--							<a href="#" class="card__play">-->
+<!--								<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">-->
+<!--							</a>-->
+<!--						</div>-->
+<!--						<div class="card__content">-->
+<!--							<h3 class="card__title"><a href="#">Benched</a></h3>-->
+<!--							<span class="card__category">-->
+<!--								<a href="#">Comedy</a>-->
+<!--							</span>-->
+<!--							<span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				&lt;!&ndash; end card &ndash;&gt;-->
 
-				<!-- section btn -->
-				<div class="col-12">
-					<a href="#" class="section__btn">Show more</a>
-				</div>
-				<!-- end section btn -->
-			</div>
-		</div>
-	</section>
+<!--				&lt;!&ndash; section btn &ndash;&gt;-->
+<!--				<div class="col-12">-->
+<!--					<a href="#" class="section__btn">Show more</a>-->
+<!--				</div>-->
+<!--				&lt;!&ndash; end section btn &ndash;&gt;-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</section>-->
 	<!-- end expected premiere -->
 
 	<!-- partners -->
