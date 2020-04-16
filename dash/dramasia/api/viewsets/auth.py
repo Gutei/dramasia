@@ -45,5 +45,5 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response({'error': 'Invalid Credentials'},
                             status=HTTP_404_NOT_FOUND)
         token, _ = Token.objects.get_or_create(user=user)
-        return Response({'token': token.key},
+        return Response({'x-token': token.key},
                         status=HTTP_200_OK)

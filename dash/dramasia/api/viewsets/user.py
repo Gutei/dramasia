@@ -24,12 +24,14 @@ from dramasia.models import ProfileUser
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import get_object_or_404
 from rest_framework.parsers import MultiPartParser
+from rest_framework import status
 
 
 class DjangoUserViewSet(viewsets.ModelViewSet):
     queryset = ProfileUser.objects.all()
     serializer_class = ProfileUserSerializer
     parser_classes = [MultiPartParser,]
+    permission_classes = [AllowAny, ]
     http_method_names = ['get', 'put']
 
     def update(self, request, pk):
@@ -37,8 +39,17 @@ class DjangoUserViewSet(viewsets.ModelViewSet):
         Use this to update user's profile.
         ---
             Header:
-                - Authorization: "Token xxxxxx"
+                x-token: "xxxxxx"
         """
+
+        if not request.user.is_superuser:
+
+            if not request.META.get('HTTP_X_TOKEN'):
+                return Response({'message':'Forbidden'}, status=status.HTTP_403_FORBIDDEN)
+
+            valid = Token.objects.filter(key=request.META.get('HTTP_X_TOKEN'))
+            if not valid:
+                return Response({'message': 'Token is not valid.'}, status=status.HTTP_403_FORBIDDEN)
 
         return super(UpdateUserViewSet, self).update(request, pk)
 
@@ -47,6 +58,7 @@ class DjangoUserViewSet(viewsets.ModelViewSet):
 class UpdateUserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = AuthSerializer
+    permission_classes = [AllowAny, ]
     http_method_names = ['put',]
 
     def update(self, request, pk):
@@ -54,8 +66,17 @@ class UpdateUserViewSet(viewsets.ModelViewSet):
         Use this to update username/password user.
         ---
             Header:
-                - Authorization: "Token xxxxxx"
+                x-token: "xxxxxx"
         """
+        if not request.user.is_superuser:
+
+            if not request.META.get('HTTP_X_TOKEN'):
+                return Response({'message':'Forbidden'}, status=status.HTTP_403_FORBIDDEN)
+
+            valid = Token.objects.filter(key=request.META.get('HTTP_X_TOKEN'))
+            if not valid:
+                return Response({'message': 'Token is not valid.'}, status=status.HTTP_403_FORBIDDEN)
+
         password = make_password(request.data.get('password'))
         user = get_object_or_404(User, pk=pk)
 
