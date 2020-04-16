@@ -7,7 +7,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework import status
 
 class DramaViewSet(viewsets.ModelViewSet):
-    queryset = Drama.objects.all()
+    queryset = Drama.objects.filter(is_publish=True).order_by('-updated')
     serializer_class = DramaSerializer
     http_method_names = ['get', ]
 
