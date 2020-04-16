@@ -153,6 +153,13 @@ class UpdateUserViewSet(viewsets.ModelViewSet):
         ---
             Header:
                 x-token: "xxxxxx"
+
+            --------------------------
+            parameter:
+
+            Fill the 'id' parameter with 'user id'.
+            You can get the user id by accessing this endpoint:
+            [GET] /nebula/v1/user/profile/get_self_profile/
         """
         if not request.user.is_superuser:
 
