@@ -6,7 +6,7 @@
 	<meta property="og:title" content="{{ movie.title|safe }}"/>
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="doramAsia" />
-    <meta property="og:image" content="{{ movie.image.url }}">
+    <meta property="og:image" content="{{ request.get_host }}{{ movie.image.url }}">
     <meta property="og:description" content="{{ movie.description|striptags|safe|truncatewords:20 }}">
 {% endblock meta_description %}
 
