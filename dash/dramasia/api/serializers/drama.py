@@ -10,9 +10,12 @@ class GenreSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class DramaCastSerializer(serializers.ModelSerializer):
+
+    cast = CastSerializer()
+
     class Meta:
         model = DramaCast
-        fields = '__all__'
+        exclude = ('drama',)
 
 class DramaSerializer(serializers.ModelSerializer):
 
