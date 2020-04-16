@@ -20,6 +20,7 @@ class AuthSerializer(serializers.ModelSerializer):
 
 class ProfileUserSerializer(serializers.ModelSerializer):
 
+    id_profile = serializers.SerializerMethodField()
     user = serializers.SerializerMethodField()
 
     def get_user(self, obj):
@@ -30,6 +31,10 @@ class ProfileUserSerializer(serializers.ModelSerializer):
             'email': user.email,
         }
         return data
+
+    def get_id_profile(self, obj):
+        user = obj.id
+        return user
 
     class Meta:
         model = ProfileUser
