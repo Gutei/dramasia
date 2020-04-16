@@ -85,5 +85,5 @@ class MdlDramaAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         # custom stuff here
-        sync_mdl.apply_async((obj.mal_id,))
+        sync_mdl.apply_async((obj.mdl_id,))
         super().save_model(request, obj, form, change)
