@@ -1,6 +1,8 @@
 import base64
 import requests
+import uuid
 from dramasia.models import Drama, DramaTag, Genre, DramaGenre, Cast, DramaCast
+from django.core.files.base import ContentFile
 
 def get_data_mdl(mdl_id):
 
@@ -19,6 +21,7 @@ def get_data_mdl(mdl_id):
 
             if drama_json['poster'] and drama_json['poster'] != '':
                 drama_image_binary = base64.b64encode(requests.get(drama_json['poster']).content)
+                data_poster = ContentFile(base64.b64decode(drama_image_binary), name='{}.{}'.format(mdl_id, drama_json['poster'].split('.')[-1]))
 
 
             drama = Drama(
@@ -35,7 +38,8 @@ def get_data_mdl(mdl_id):
                 country='' if not drama_json['country'] else drama_json['country'],
                 airing_date=drama_json['aired'],
                 total_episode=drama_json['episodes'],
-                image_binary = drama_image_binary.decode(),
+                image_binary=drama_image_binary.decode(),
+                image=data_poster,
             )
 
             drama.save()
@@ -61,13 +65,15 @@ def get_data_mdl(mdl_id):
                     act_name = c['name'].split(' in ')
                     if not cast:
                         cast_name = act_name[0]
-
+                        img_name = uuid.uuid4()
                         cast_image_binary = base64.b64encode(requests.get(c['image']).content)
+                        data_cast_img = ContentFile(base64.b64decode(cast_image_binary), name='{}.{}'.format(img_name.hex[:8], c['image'].split('.')[-1]))
 
                         cast = Cast(
                             image_url=c['image'],
                             name=cast_name,
                             image_binary=cast_image_binary.decode(),
+                            image=data_cast_img,
                         )
                         cast.save()
 
