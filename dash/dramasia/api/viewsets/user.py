@@ -60,6 +60,13 @@ class DjangoUserViewSet(viewsets.ModelViewSet):
         ---
             Header:
                 x-token: "xxxxxx"
+            --------------------------
+            parameter:
+
+            Fill the 'id' parameter with 'profile id'. Not user id.
+            You can get the profile id and user id by accessing this endpoint:
+            [GET] /nebula/v1/user/profile/get_self_profile/
+
         """
         if not request.user.is_superuser:
 
@@ -78,6 +85,13 @@ class DjangoUserViewSet(viewsets.ModelViewSet):
         ---
             Header:
                 x-token: "xxxxxx"
+            --------------------------
+            parameter:
+
+            Fill the 'id' parameter with 'profile id'. Not user id.
+            You can get the profile id and user id by accessing this endpoint:
+            [GET] /nebula/v1/user/profile/get_self_profile/
+
         """
 
         if not request.user.is_superuser:
