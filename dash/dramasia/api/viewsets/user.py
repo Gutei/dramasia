@@ -15,7 +15,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import (api_view, authentication_classes,
                                        detail_route, list_route,
                                        parser_classes, permission_classes,
-                                       renderer_classes)
+                                       renderer_classes, action)
 
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
 
@@ -90,6 +90,40 @@ class DjangoUserViewSet(viewsets.ModelViewSet):
                 return Response({'message': 'Token is not valid.'}, status=status.HTTP_403_FORBIDDEN)
 
         return super(UpdateUserViewSet, self).update(request, pk)
+
+    @action(detail=False, methods=['GET'])
+    def get_self_profile(self, request):
+        """
+        Use this to get logged in user profile.
+        ---
+            Header:
+                x-token: "xxxxxx"
+        """
+
+        if not request.user.is_superuser:
+
+            if not request.META.get('HTTP_X_TOKEN'):
+                return Response({'message': 'Forbidden'}, status=status.HTTP_403_FORBIDDEN)
+
+            valid = Token.objects.filter(key=request.META.get('HTTP_X_TOKEN'))
+            if not valid:
+                return Response({'message': 'Token is not valid.'}, status=status.HTTP_403_FORBIDDEN)
+
+            profile = ProfileUser.objects.filter(user=valid.user).first()
+            if not profile:
+                return Response({'message': 'Something wrong. Token is valid but can not find user profile'}, status=HTTP_404_NOT_FOUND)
+
+            serializer = ProfileUserSerializer(profile)
+
+            return Response(serializer.data, status=HTTP_200_OK)
+
+        profile = ProfileUser.objects.filter(user=request.user).first()
+        if not profile:
+            return Response({'message': 'Something wrong. Token is valid but can not find user profile'}, status=HTTP_404_NOT_FOUND)
+
+        serializer = ProfileUserSerializer(profile)
+
+        return Response(serializer.data, status=HTTP_200_OK)
 
 
 
