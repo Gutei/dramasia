@@ -13,6 +13,11 @@ class CastInline(admin.TabularInline):
     raw_id_fields = ('cast',)
     extra = 1
 
+class GenreInline(admin.TabularInline):
+    model = DramaGenre
+    raw_id_fields = ('genre',)
+    extra = 1
+
 @admin.register(Drama, site=admin.site)
 class DramaAdmin(admin.ModelAdmin):
     list_display = ('title', 'get_image', 'is_publish', 'created', 'updated')
@@ -22,6 +27,7 @@ class DramaAdmin(admin.ModelAdmin):
 
     inlines = [
         CastInline,
+        GenreInline,
     ]
 
     def get_image(self, obj):
