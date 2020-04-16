@@ -9,6 +9,11 @@ class GenreSerializer(serializers.ModelSerializer):
         model = Genre
         fields = '__all__'
 
+class DramaCastSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DramaCast
+        fields = '__all__'
+
 class DramaSerializer(serializers.ModelSerializer):
 
     casts = serializers.SerializerMethodField()
@@ -16,12 +21,12 @@ class DramaSerializer(serializers.ModelSerializer):
 
     def get_casts(self, obj):
         cast = DramaCast.objects.filter(drama=obj)
-        serializer = CastSerializer(cast, many=True)
+        serializer = DramaCastSerializer(cast, many=True)
         return serializer.data
 
     def get_genre(self, obj):
-        cast = DramaGenre.objects.filter(drama=obj)
-        serializer = GenreSerializer(cast, many=True)
+        genre = DramaGenre.objects.filter(drama=obj)
+        serializer = GenreSerializer(genre, many=True)
         return serializer.data
 
     class Meta:
