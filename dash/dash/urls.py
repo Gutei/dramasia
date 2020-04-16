@@ -21,7 +21,36 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls import url, include
 from dramasia import views
 
+from rest_framework import routers
+from dramasia.api.viewsets.drama import DramaViewSet
+from dramasia.api.viewsets.cast import CastViewSet
+from dramasia.api.viewsets.auth import UserViewSet
+from dramasia.api.viewsets.user import UpdateUserViewSet, DjangoUserViewSet, RegisterUserViewSet
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='dramAsia API')
+
 admin.site.site_header = 'dramAsia'
+
+router = routers.DefaultRouter()
+router.register(r'drama', DramaViewSet)
+router.register(r'cast', CastViewSet)
+router.register(r'auth', UserViewSet)
+router.register(r'update-auth', UpdateUserViewSet)
+router.register(r'user/profile', DjangoUserViewSet)
+router.register(r'user/register', RegisterUserViewSet)
+
+drama = routers.SimpleRouter()
+drama.register(r'', DramaViewSet)
+
+cast = routers.SimpleRouter()
+cast.register(r'', CastViewSet)
+
+auth = routers.SimpleRouter()
+auth.register(r'', UserViewSet)
+
+update_user = routers.SimpleRouter()
+update_user.register(r'', UpdateUserViewSet)
 
 urlpatterns = [
                   url(r'^jet', include('jet.urls', 'jet')),
@@ -34,6 +63,10 @@ urlpatterns = [
                   url(r'^movies-list/$', views.listing_movie, name='movies_list'),
                   url(r'^movie/(?P<pk>[^/]+)/$', views.get_movie, name='get_movie'),
                   url(r'^post-review-movie/(?P<pk>[^/]+)/$', views.post_review, name='post_review_movie'),
+                  url(r'^developer/stellarium', schema_view),
+                  url(r'^nebula/v1/', include(router.urls)),
+                  url(r'^api-auth/', include('rest_framework.urls',  namespace='rest_framework')),
+
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
                                                                                            document_root=settings.MEDIA_ROOT)
