@@ -105,7 +105,7 @@ class DjangoUserViewSet(viewsets.ModelViewSet):
             if not request.META.get('HTTP_X_TOKEN'):
                 return Response({'message': 'Forbidden'}, status=status.HTTP_403_FORBIDDEN)
 
-            valid = Token.objects.filter(key=request.META.get('HTTP_X_TOKEN'))
+            valid = Token.objects.filter(key=request.META.get('HTTP_X_TOKEN')).first()
             if not valid:
                 return Response({'message': 'Token is not valid.'}, status=status.HTTP_403_FORBIDDEN)
 
