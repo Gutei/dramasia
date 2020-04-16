@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
-from dramasia.models import Drama, DramaCast
+from dramasia.models import Drama, DramaCast, Genre
 
 
 def listing_movie(request):
@@ -8,8 +8,10 @@ def listing_movie(request):
     paginator = Paginator(movies, 6)
     page = request.GET.get('page')
     movies_pages = paginator.get_page(page)
+    genre = Genre.objects.all()
     context = {
         'movies': movies_pages,
+        'genres': genre,
     }
     return render(request, 'dramasia/movies/movie-list.html', context)
 
