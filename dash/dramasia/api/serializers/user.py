@@ -19,9 +19,21 @@ class AuthSerializer(serializers.ModelSerializer):
         fields = ('username', 'password')
 
 class ProfileUserSerializer(serializers.ModelSerializer):
+
+    user = serializers.SerializerMethodField()
+
+    def get_user(self, obj):
+        user = obj.user
+        data = {
+            'id_user': user.id,
+            'username': user.username,
+            'email': user.email,
+        }
+        return data
+
     class Meta:
         model = ProfileUser
-        exclude = ('user',)
+        exclude = ('id',)
 
 
 class RegisterSerializer(serializers.ModelSerializer):

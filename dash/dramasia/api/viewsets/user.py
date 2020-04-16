@@ -34,6 +34,44 @@ class DjangoUserViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny, ]
     http_method_names = ['get', 'put']
 
+    def list(self, request):
+        """
+        Use this to get user list.
+        ---
+            Header:
+                x-token: "xxxxxx"
+        """
+
+        if not request.user.is_superuser:
+
+            if not request.META.get('HTTP_X_TOKEN'):
+                return Response({'message': 'Forbidden'}, status=status.HTTP_403_FORBIDDEN)
+
+            valid = Token.objects.filter(key=request.META.get('HTTP_X_TOKEN'))
+            if not valid:
+                return Response({'message': 'Token is not valid.'}, status=status.HTTP_403_FORBIDDEN)
+
+        return super(DjangoUserViewSet, self).list(request)
+
+
+    def retrieve(self, request, pk=None):
+        """
+        Use this to get user profile.
+        ---
+            Header:
+                x-token: "xxxxxx"
+        """
+        if not request.user.is_superuser:
+
+            if not request.META.get('HTTP_X_TOKEN'):
+                return Response({'message': 'Forbidden'}, status=status.HTTP_403_FORBIDDEN)
+
+            valid = Token.objects.filter(key=request.META.get('HTTP_X_TOKEN'))
+            if not valid:
+                return Response({'message': 'Token is not valid.'}, status=status.HTTP_403_FORBIDDEN)
+
+        return super(DjangoUserViewSet, self).retrieve(request)
+
     def update(self, request, pk):
         """
         Use this to update user's profile.
