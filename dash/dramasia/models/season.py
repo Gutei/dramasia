@@ -12,7 +12,7 @@ class Season(models.Model):
         db_table = 'season'
 
     def __str__(self):
-        return '{}'.format(self.drama.title, self.cast.name)
+        return '{}'.format(self.name)
 
 class DramaSeason(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
