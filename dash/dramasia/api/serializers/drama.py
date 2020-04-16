@@ -16,12 +16,12 @@ class DramaSerializer(serializers.ModelSerializer):
 
     def get_casts(self, obj):
         cast = DramaCast.objects.filter(drama=obj)
-        serializer = GenreSerializer(cast, many=True)
+        serializer = CastSerializer(cast, many=True)
         return serializer.data
 
-    def get_casts(self, obj):
+    def get_genre(self, obj):
         cast = DramaGenre.objects.filter(drama=obj)
-        serializer = CastSerializer(cast, many=True)
+        serializer = GenreSerializer(cast, many=True)
         return serializer.data
 
     class Meta:
