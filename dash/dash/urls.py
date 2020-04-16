@@ -22,7 +22,7 @@ from django.conf.urls import url, include
 from dramasia import views
 
 from rest_framework import routers
-from dramasia.api.viewsets.drama import DramaViewSet
+from dramasia.api.viewsets.drama import DramaViewSet, GenreViewSet
 from dramasia.api.viewsets.cast import CastViewSet
 from dramasia.api.viewsets.auth import UserViewSet
 from dramasia.api.viewsets.user import UpdateUserViewSet, DjangoUserViewSet, RegisterUserViewSet
@@ -39,6 +39,7 @@ router.register(r'auth', UserViewSet)
 router.register(r'update-auth', UpdateUserViewSet)
 router.register(r'user/profile', DjangoUserViewSet)
 router.register(r'user/register', RegisterUserViewSet)
+router.register(r'genre', GenreViewSet)
 
 drama = routers.SimpleRouter()
 drama.register(r'', DramaViewSet)

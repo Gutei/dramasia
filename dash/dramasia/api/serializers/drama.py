@@ -35,3 +35,9 @@ class DramaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Drama
         fields = '__all__'
+
+
+class DramaGenreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DramaGenre
+        fields = '__all__'
