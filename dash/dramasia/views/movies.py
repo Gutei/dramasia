@@ -4,7 +4,7 @@ from dramasia.models import Drama, DramaCast
 
 
 def listing_movie(request):
-    movies = Drama.objects.filter(type=2).order_by('-updated')
+    movies = Drama.objects.filter(is_publish=True).order_by('-updated')
     paginator = Paginator(movies, 6)
     page = request.GET.get('page')
     movies_pages = paginator.get_page(page)
@@ -15,7 +15,7 @@ def listing_movie(request):
 
 
 def griding_movie(request):
-    movies = Drama.objects.filter(type=2).order_by('-updated')
+    movies = Drama.objects.filter(is_publish=True).order_by('-updated')
     paginator = Paginator(movies, 12)
     page = request.GET.get('page')
     movies_pages = paginator.get_page(page)
@@ -26,7 +26,7 @@ def griding_movie(request):
 
 
 def get_movie(request, pk):
-    movies = Drama.objects.filter(type=2).order_by('-updated')[:6]
+    movies = Drama.objects.filter(is_publish=True).order_by('-updated')[:6]
     movie = Drama.objects.filter(id=pk).first()
     cast = DramaCast.objects.filter(drama=movie)
     context = {
@@ -39,5 +39,4 @@ def get_movie(request, pk):
 
 def post_review(request, pk):
     rate = request.POST.get('rate')
-    print(rate)
     return redirect('home')
