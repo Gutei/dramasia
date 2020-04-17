@@ -63,6 +63,7 @@ urlpatterns = [
                   url(r'^movies-grid/$', views.griding_movie, name='movies_grid'),
                   url(r'^content-list/$', views.listing_movie, name='movies_list'),
                   url(r'^content/(?P<pk>[^/]+)/$', views.get_movie, name='get_movie'),
+                  url(r'^cast-list/$', views.listing_cast, name='casts_list'),
                   url(r'^post-review-movie/(?P<pk>[^/]+)/$', views.post_review, name='post_review_movie'),
                   url(r'^developer/stellarium', schema_view),
                   url(r'^nebula/v1/', include(router.urls)),
