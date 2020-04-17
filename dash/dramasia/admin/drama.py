@@ -74,6 +74,17 @@ class SeasonAdmin(admin.ModelAdmin):
         SeasonInline,
     ]
 
+    def save_model(self, request, obj, form, change):
+
+        if change:
+            season = Season.objects.filter(is_season=True).first()
+
+            if season:
+                season.is_season = False
+                season.save()
+
+        super().save_model(request, obj, form, change)
+
 
 @admin.register(MdlDrama, site=admin.site)
 class MdlDramaAdmin(admin.ModelAdmin):
