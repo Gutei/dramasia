@@ -66,8 +66,9 @@ class GenreAdmin(admin.ModelAdmin):
 
 @admin.register(Season, site=admin.site)
 class SeasonAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'is_season', 'created')
     search_fields = ('name',)
+    list_editable = ('is_season',)
     list_per_page = 10
 
     inlines = [
