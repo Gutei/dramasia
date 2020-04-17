@@ -95,10 +95,7 @@
 
 							<div class="col-12 col-sm-8">
 								<div class="card__content">
-									<h3 class="card__title"><a href="#">{% if not m.description %}Belum ada biodata yang ditulis.{% endif %}{{ m.biodata|truncatechars:28 }}</a></h3>
-									<span class="card__category">
-										<a href="#">{{ m.country}}</a>
-									</span>
+									<h3 class="card__title"><a href="#">{{ m.name|truncatechars:28 }}</a></h3>
 
 									<div class="card__description">
 										<p>{% if not m.description %}Belum ada biodata yang ditulis.{% endif %}{{ m.biodata|striptags|safe|truncatechars:277 }}</p>
