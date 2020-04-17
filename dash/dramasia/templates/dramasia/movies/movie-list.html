@@ -70,6 +70,22 @@
 								</ul>
 							</div>
 
+							<!-- filter item -->
+							<div class="filter__item" id="filter__country">
+								<span class="filter__item-label">NEGARA:</span>
+
+								<div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-country" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<input type="button" value="-Pilih Negara-">
+									<span></span>
+								</div>
+
+								<ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-genre">
+									{% for c in countries %}
+									<li>{{c.country}}</li>
+									{% endfor %}
+								</ul>
+							</div>
+
 <!--							<div class="filter__item" id="filter__search">-->
 <!--								<span class="filter__item-label">Cari:</span>-->
 

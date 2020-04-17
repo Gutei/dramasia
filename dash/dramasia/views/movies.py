@@ -9,9 +9,13 @@ def listing_movie(request):
     page = request.GET.get('page')
     movies_pages = paginator.get_page(page)
     genre = Genre.objects.all()
+
+    country = Drama.objects.values('country').distinct()
+
     context = {
         'movies': movies_pages,
         'genres': genre,
+        'countries': country,
     }
     return render(request, 'dramasia/movies/movie-list.html', context)
 
