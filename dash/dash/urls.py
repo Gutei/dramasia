@@ -70,6 +70,8 @@ urlpatterns = [
                   url(r'^movies-grid/$', views.griding_movie, name='movies_grid'),
                   url(r'^content-list/$', views.listing_movie, name='movies_list'),
                   url(r'^content/(?P<pk>[^/]+)/$', views.get_movie, name='get_movie'),
+                  url(r'^artikel/$', views.list_article, name='list_article'),
+                  url(r'^artikel/(?P<slug>[^/]+)/$', views.get_article, name='get_article'),
                   url(r'^cast-list/$', views.listing_cast, name='casts_list'),
                   url(r'^post-review-movie/(?P<pk>[^/]+)/$', views.post_review, name='post_review_movie'),
                   url(r'^developer/stellarium', permission_required('is_staff')(schema_view)),
