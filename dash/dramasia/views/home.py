@@ -15,3 +15,14 @@ def home(request):
         'drama': drama
     }
     return render(request, 'dramasia/home.html', context)
+
+
+def disclaimer(request):
+    context = {}
+
+    return render(request, 'dramasia/disclaimer.html', context)
+
+def privacy(request):
+    context = {}
+
+    return render(request, 'dramasia/privacy-policy.html', context)

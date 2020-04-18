@@ -1,0 +1,95 @@
+{% extends "dramasia/index.html" %}
+{% load static %}
+
+{% block meta_description %}
+	<meta name="description" content="Disclaimer for Doramasia - If you require any more information or have any questions about our site's disclaimer, please feel free to contact us by email at projecteupho@gmail.com...">
+{% endblock meta_description %}
+
+{% block meta_keyword %}
+	<meta name="keywords" content="Disclaimer for Doramasia">
+{% endblock meta_keyword %}
+
+{% block title %}
+	<title>Disclaimer</title>
+{% endblock title %}
+
+{% block extra_css %}
+	<style>
+		.title-dramasia {
+			background: -webkit-linear-gradient(#c40886, #fc65d7);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+	</style>
+{% endblock extra_css %}
+
+{% block content %}
+	<!-- page title -->
+	<section class="section section--first section--bg" data-bg="{% static 'dramasia/img/section/section.jpg' %}">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section__wrap">
+						<!-- section title -->
+						<h1 class="section__title">Disclaimer</h1>
+						<!-- end section title -->
+
+						<!-- breadcrumb -->
+						<ul class="breadcrumb">
+							<li class="breadcrumb__item"><a href="{% url 'home' %}">Home</a></li>
+							<li class="breadcrumb__item breadcrumb__item--active">Disclaimer</li>
+						</ul>
+						<!-- end breadcrumb -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end page title -->
+
+	<!-- filter -->
+
+	<!-- end filter -->
+
+	<!-- catalog -->
+	<div class="catalog">
+		<div class="container">
+			<div class="row">
+				<!-- card -->
+				<div class="col-12 col-sm-12 col-lg-12" style="color:#fff;">
+					<div class="card card--list"><br>
+                        <p><strong>Disclaimer for Doramasia</strong></p>
+
+                        <p>If you require any more information or have any questions about our site&#39;s disclaimer, please feel free to contact us by email at projecteupho@gmail.com<br />
+                        &nbsp;</p>
+
+                        <p><strong>Disclaimers for Doramasia</strong></p>
+
+                        <p>All the information on this website - <a href="https://doramasia.com/"><span style="color:#e67e22">https://doramasia.com</span></a> - is published in good faith and for general information purpose only. Doramasia does not make any warranties about the completeness, reliability and accuracy of this information. Any action you take upon the information you find on this website (Doramasia), is strictly at your own risk. Doramasia will not be liable for any losses and/or damages in connection with the use of our website. Our Disclaimer was generated with the help of the Disclaimer Generator and the Disclaimer Generator.</p>
+
+                        <p>From our website, you can visit other websites by following hyperlinks to such external sites. While we strive to provide only quality links to useful and ethical websites, we have no control over the content and nature of these sites. These links to other websites do not imply a recommendation for all the content found on these sites. Site owners and content may change without notice and may occur before we have the opportunity to remove a link which may have gone &#39;bad&#39;.</p>
+
+                        <p>Please be also aware that when you leave our website, other sites may have different privacy policies and terms which are beyond our control. Please be sure to check the Privacy Policies of these sites as well as their &quot;Terms of Service&quot; before engaging in any business or uploading any information.</p>
+
+                        <p>&nbsp;</p>
+
+                        <p><strong>Consent</strong></p>
+
+                        <p>By using our website, you hereby consent to our disclaimer and agree to its terms.</p>
+
+                        <p>&nbsp;</p>
+
+                        <p><strong>Update</strong></p>
+
+                        <p>Should we update, amend or make any changes to this document, those changes will be prominently posted here.</p>
+
+					</div>
+				</div>
+				<!-- end card -->
+
+
+			</div>
+		</div>
+	</div>
+	<!-- end catalog -->
+{% endblock content %}
