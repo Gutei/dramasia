@@ -192,3 +192,5 @@ SWAGGER_SETTINGS = {
 # LOGOUT_URL = 'rest_framework:logout'
 # LOGIN_URL = 'login'
 # LOGOUT_URL = 'rest_framework:logout'
+
+PREPEND_WWW = True
