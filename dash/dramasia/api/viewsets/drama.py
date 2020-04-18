@@ -25,21 +25,6 @@ class DramaViewSet(viewsets.ModelViewSet):
 
             This will automatically give the 'next' attribute that contains the uri to go to the next page
             if the content exceeds the limit.
-
-            :return
-
-            Example:
-
-            {
-              "count": 31,
-              "next": "http://139.99.40.74:8000/nebula/v1/drama/?limit=15&offset=15",
-              "previous": null,
-              "results": [
-                {...},
-                {...},
-                ...
-               ]
-            }
         """
         if not request.user.is_superuser:
 
