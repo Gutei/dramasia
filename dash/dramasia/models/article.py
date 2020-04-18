@@ -11,7 +11,7 @@ class Article(models.Model):
     title = models.CharField(max_length=128, default="-")
     content = RichTextUploadingField(blank=True, null=True, extra_plugins=['uploadimage'],)
     is_publish = models.BooleanField(default=False)
-    slug = models.SlugField(max_length=512, unique=True)
+    slug = models.SlugField(max_length=512, blank=True, null=True,)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -19,7 +19,8 @@ class Article(models.Model):
         db_table = 'articles'
 
     def save(self, *args, **kwargs):
+        uid = self.id.hex[:4]
 
-        self.slug = slugify(self.title)
+        self.slug = '{}-{}'.format(uid, slugify(self.title))
 
         super(Article, self).save(*args, **kwargs)
