@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from dramasia.models import Drama, DramaCast, Genre
+from django.http import Http404
 
 
 def listing_movie(request):
@@ -34,6 +35,10 @@ def griding_movie(request):
 def get_movie(request, pk):
     movies = Drama.objects.filter(is_publish=True).order_by('-updated')[:6]
     movie = Drama.objects.filter(slug=pk).first()
+
+    if not movie:
+        raise Http404("Not Found.")
+
     cast = DramaCast.objects.filter(drama=movie)
     context = {
         'movies': movies,
