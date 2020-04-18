@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
@@ -21,7 +22,7 @@ def auth(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                return redirect(reverse('index'))
             else:
                 return HttpResponse("Your account was inactive.")
         else:
