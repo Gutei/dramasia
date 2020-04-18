@@ -23,7 +23,7 @@
 				<div class="col-12">
 					<div class="sign__content">
 						<!-- authorization form -->
-						<form action="#" method="post" class="sign__form" action="{% url 'auth' %}">{% csrf_token %}
+						<form method="post" class="sign__form" action="{% url 'auth' %}">{% csrf_token %}
 							<a href="{% url 'home' %}" class="sign__logo">
 								<img src="{% static 'dramasia/img/Logo Dramasia 2.png' %}" alt="">
 							</a>
