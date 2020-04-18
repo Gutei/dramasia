@@ -27,6 +27,7 @@ from dramasia.api.viewsets.cast import CastViewSet
 from dramasia.api.viewsets.auth import UserViewSet
 from dramasia.api.viewsets.user import UpdateUserViewSet, DjangoUserViewSet, RegisterUserViewSet
 from rest_framework_swagger.views import get_swagger_view
+from django.contrib.auth.decorators import permission_required
 
 schema_view = get_swagger_view(title='dramAsia API')
 
@@ -65,7 +66,7 @@ urlpatterns = [
                   url(r'^content/(?P<pk>[^/]+)/$', views.get_movie, name='get_movie'),
                   url(r'^cast-list/$', views.listing_cast, name='casts_list'),
                   url(r'^post-review-movie/(?P<pk>[^/]+)/$', views.post_review, name='post_review_movie'),
-                  url(r'^developer/stellarium', schema_view),
+                  url(r'^developer/stellarium', permission_required('is_staff')(schema_view)    ),
                   url(r'^nebula/v1/', include(router.urls)),
                   url(r'^api-auth/', include('rest_framework.urls',  namespace='rest_framework')),
 
