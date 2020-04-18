@@ -66,7 +66,7 @@ def get_movie(request, pk):
     for dg in drama_genre:
         genres.append(dg.genre.genre)
 
-    movies = DramaGenre.objects.filter(genre__genre__in=genres, drama__is_publish=True).distinct('drama')
+    movies = DramaGenre.objects.filter(genre__genre__in=genres, drama__is_publish=True).exclude(drama=movie).distinct('drama')
 
     lm = []
     for m in movies:
