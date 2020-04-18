@@ -24,8 +24,8 @@ def auth(request):
                 login(request, user)
                 return redirect(reverse('home'))
             else:
-                return HttpResponse("Your account was inactive.")
+                return redirect(reverse('home'))
         else:
-            return HttpResponse("Invalid login details given")
+            return redirect(reverse('home'))
     else:
-        return render(request, 'dramasia/login.html', {})
+        return redirect(reverse('home'))
