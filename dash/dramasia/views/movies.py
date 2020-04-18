@@ -14,6 +14,12 @@ def listing_movie(request):
             movies = DramaGenre.objects.filter(genre__genre=request.GET.get('genre'), drama__is_publish=True,
                                                drama__country=request.GET.get('country')).order_by('-title')
 
+            lm = []
+            for m in movies:
+                lm.append(m.drama)
+
+            movies = lm
+
     paginator = Paginator(movies, 6)
     page = request.GET.get('page')
     movies_pages = paginator.get_page(page)
