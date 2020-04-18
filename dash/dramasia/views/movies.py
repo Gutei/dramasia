@@ -23,6 +23,10 @@ def listing_movie(request):
 
             movies = lm
 
+    if request.GET.get('q') and request.GET.get('q') != '':
+        second_head = "Hasil pencarian dengan keyword {}".format(request.GET.get('q'))
+        movies = Drama.objects.filter(is_publish=True, title__icontains=request.GET.get('q')).order_by('title')
+
     paginator = Paginator(movies, 6)
     page = request.GET.get('page')
     movies_pages = paginator.get_page(page)
