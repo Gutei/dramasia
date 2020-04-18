@@ -26,7 +26,14 @@
 {% block content %}
 	<!-- home -->
 	<section class="home">
+		<!-- home bg -->
+		<div class="owl-carousel home__bg">
+			{% for t in this_season %}
+				<div class="item home__cover" data-bg="{{t.image.url}}"></div>
+			{% endfor %}
 
+		</div>
+		<!-- end home bg -->
 
 		<div class="container">
 			<div class="row">
