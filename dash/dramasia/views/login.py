@@ -22,7 +22,7 @@ def auth(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return redirect(reverse('index'))
+                return redirect(reverse('home'))
             else:
                 return HttpResponse("Your account was inactive.")
         else:
