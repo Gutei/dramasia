@@ -24,6 +24,7 @@ from dramasia import views
 from rest_framework import routers
 from dramasia.api.viewsets.drama import DramaViewSet, GenreViewSet
 from dramasia.api.viewsets.cast import CastViewSet
+from dramasia.api.viewsets.article import ArticleViewSet
 from dramasia.api.viewsets.auth import UserViewSet
 from dramasia.api.viewsets.user import UpdateUserViewSet, DjangoUserViewSet, RegisterUserViewSet
 from rest_framework_swagger.views import get_swagger_view
@@ -41,6 +42,7 @@ router.register(r'update-auth', UpdateUserViewSet)
 router.register(r'user/profile', DjangoUserViewSet)
 router.register(r'user/register', RegisterUserViewSet)
 router.register(r'genre', GenreViewSet)
+router.register(r'article', ArticleViewSet)
 
 drama = routers.SimpleRouter()
 drama.register(r'', DramaViewSet)
