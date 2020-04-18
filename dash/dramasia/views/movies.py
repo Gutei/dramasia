@@ -60,6 +60,19 @@ def get_movie(request, pk):
     movies = Drama.objects.filter(is_publish=True).order_by('-updated')[:6]
     movie = Drama.objects.filter(slug=pk).first()
 
+    drama_genre = DramaGenre.objects.filter(drama=movie)
+    genres = []
+    for dg in drama_genre:
+        genres.append(dg.genre.genre)
+
+    movies = DramaGenre.objects.filter(genre__genre__in=genres, drama__is_publish=True).order_by('drama__title')
+
+    lm = []
+    for m in movies:
+        lm.append(m.drama)
+
+    movies = lm
+
     if not movie:
         raise Http404("Not Found.")
 
