@@ -60,7 +60,7 @@ urlpatterns = [
                   url(r'^teh-olong/', admin.site.urls),
                   url(r'^$', views.home, name='home'),
                   url(r'^login/$', views.login, name='login'),
-                  url(r'^auth/$', views.auth, name='auth'),
+                  url(r'^auth/$', views.auth_login, name='auth_login'),
                   url(r'^register/$', views.register, name='register'),
                   url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
                   url(r'^disclaimer/$', views.disclaimer, name='disclaimer'),
