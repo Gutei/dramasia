@@ -5,7 +5,15 @@ from django.http import Http404
 
 
 def listing_movie(request):
-    movies = Drama.objects.filter(is_publish=True).order_by('-updated')
+    movies = Drama.objects.filter(is_publish=True).order_by('-title')
+
+    if request.GET.get('country') and request.GET.get('country') != 'Semua':
+        if not request.GET.get('genre') or request.GET.get('genre') == 'Semua':
+            movies = Drama.objects.filter(is_publish=True, country=request.GET.get('country')).order_by('-title')
+        else:
+            movies = DramaGenre.objects.filter(genre__genre=request.GET.get('genre'), drama__is_publish=True,
+                                               drama__country=request.GET.get('country')).order_by('-title')
+
     paginator = Paginator(movies, 6)
     page = request.GET.get('page')
     movies_pages = paginator.get_page(page)
