@@ -24,9 +24,6 @@ def listing_movie(request):
 def griding_movie(request):
     movies = Drama.objects.filter(is_publish=True).order_by('-title')
 
-    if request.GET.get('genre') and request.GET.get('genre') != 'Semua':
-        movies = DramaGenre.objects.filter(genre__genre=request.GET.get('genre'), drama__is_publish=True).order_by('-title')
-
     if request.GET.get('country') and request.GET.get('country') != 'Semua':
         if not request.GET.get('genre') or request.GET.get('genre') == 'Semua':
             movies = Drama.objects.filter(is_publish=True, country=request.GET.get('country')).order_by('-title')
