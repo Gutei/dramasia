@@ -1,3 +1,4 @@
+import random
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from dramasia.models import Drama, DramaCast, Genre, DramaGenre
@@ -76,9 +77,15 @@ def get_movie(request, pk):
     if not movie:
         raise Http404("Not Found.")
 
+    if len(movies) > 10:
+        ses_anime_random_sample = 10
+        shuffle_ses_anime = random.sample(set(movies), ses_anime_random_sample)
+    else:
+        shuffle_ses_anime = movies
+
     cast = DramaCast.objects.filter(drama=movie)
     context = {
-        'movies': movies,
+        'movies': shuffle_ses_anime,
         'movie': movie,
         'cast': cast
     }
