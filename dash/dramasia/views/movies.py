@@ -9,10 +9,10 @@ def listing_movie(request):
     second_head = "Semua Genre di Semua Negara"
     if request.GET.get('country') and request.GET.get('country') != 'Semua':
         if not request.GET.get('genre') or request.GET.get('genre') == 'Semua':
-            second_head = "Semua Genre di Movie/Series {}"
+            second_head = "Semua Genre di Movie/Series {}".format(request.GET.get('country'))
             movies = Drama.objects.filter(is_publish=True, country=request.GET.get('country')).order_by('title')
         else:
-            second_head = "Genre {} di Movie/Series {}"
+            second_head = "Genre {} di Movie/Series {}".format(request.GET.get('genre'), request.GET.get('country'))
             movies = DramaGenre.objects.filter(genre__genre=request.GET.get('genre'), drama__is_publish=True,
                                                drama__country=request.GET.get('country')).order_by('drama__title')
 
