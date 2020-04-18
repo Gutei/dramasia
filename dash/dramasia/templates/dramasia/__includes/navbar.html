@@ -70,10 +70,17 @@
 <!--									<i class="icon ion-ios-search"></i>-->
 <!--								</button>-->
 
+								{% if request.user.is_anonymous %}
 								<a href="{% url 'login' %}" class="header__sign-in">
 									<i class="icon ion-ios-log-in"></i>
 									<span>Masuk</span>
 								</a>
+								{% else %}
+								<a href="{% url 'logout' %}" class="header__sign-in">
+									<i class="icon ion-ios-log-out"></i>
+									<span>Logout</span>
+								</a>
+								{% endif %}
 							</div>
 							<!-- end header auth -->
 
