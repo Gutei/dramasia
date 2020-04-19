@@ -105,9 +105,7 @@ class DramaViewSet(viewsets.ModelViewSet):
 
         country = Drama.objects.values('country').distinct()
 
-        data = {
-            'country': country
-        }
+        data = country
 
         return Response(data, status=status.HTTP_200_OK)
 
