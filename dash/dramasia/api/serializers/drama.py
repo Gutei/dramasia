@@ -10,6 +10,8 @@ class GenreSerializer(serializers.ModelSerializer):
         fields = ('id', 'genre')
 
 class DramaOnlyGenreSerializer(serializers.ModelSerializer):
+    genre = GenreSerializer()
+
     class Meta:
         model = DramaGenre
         fields = ('genre',)
