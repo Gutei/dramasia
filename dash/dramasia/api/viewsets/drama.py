@@ -104,10 +104,10 @@ class DramaViewSet(viewsets.ModelViewSet):
                 return Response({'message': 'Token is not valid.'}, status=status.HTTP_403_FORBIDDEN)
 
         country = Drama.objects.values('country').distinct()
-        if country:
-            data = country.country
-        else:
-            data = []
+        data = []
+
+        for c in country:
+            data.append(c.country)
 
         return Response(data, status=status.HTTP_200_OK)
 
