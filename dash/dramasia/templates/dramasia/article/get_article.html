@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block meta_description %}
-	<meta name="description" content="Disclaimer for Doramasia - If you require any more information or have any questions about our site's disclaimer, please feel free to contact us by email at projecteupho@gmail.com...">
+	<meta name="description" content="{{ article.content|striptags|safe|truncatewords:20 }}">
 {% endblock meta_description %}
 
 {% block meta_keyword %}
-	<meta name="keywords" content="Disclaimer for Doramasia">
+	<meta name="keywords" content="{{article.title|safe}}">
 {% endblock meta_keyword %}
 
 {% block title %}
-	<title>Disclaimer</title>
+	<title>{{article.title|safe}}</title>
 {% endblock title %}
 
 {% block extra_css %}
