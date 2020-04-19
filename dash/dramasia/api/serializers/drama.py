@@ -39,17 +39,17 @@ class DramaSerializer(serializers.ModelSerializer):
 
 class DramaGenreSerializer(serializers.ModelSerializer):
     drama = serializers.SerializerMethodField()
-    genre = serializers.SerializerMethodField()
+    # genre = serializers.SerializerMethodField()
 
     def get_drama(self, obj):
         drama = obj.drama
         serializer = DramaSerializer(drama)
         return serializer.data
 
-    def get_genre(self, obj):
-        genre = obj.genre
-        serializer = GenreSerializer(genre)
-        return serializer.data
+    # def get_genre(self, obj):
+    #     genre = obj.genre
+    #     serializer = GenreSerializer(genre)
+    #     return serializer.data
 
     class Meta:
         model = DramaGenre
