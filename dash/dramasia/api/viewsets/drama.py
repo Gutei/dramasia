@@ -8,7 +8,7 @@ from rest_framework import status
 from rest_framework.pagination import (LimitOffsetPagination, PageNumberPagination)
 
 class DramaViewSet(viewsets.ModelViewSet):
-    queryset = Drama.objects.filter(is_publish=True).order_by('-updated')
+    queryset = Drama.objects.filter(is_publish=True)
     serializer_class = DramaSerializer
     http_method_names = ['get', ]
 
@@ -25,6 +25,18 @@ class DramaViewSet(viewsets.ModelViewSet):
 
             This will automatically give the 'next' attribute that contains the uri to go to the next page
             if the content exceeds the limit.
+
+            Additional search query params:
+            search = <string>
+            country = <string : case_sensitive>
+
+            example:
+
+            /nebula/v1/drama/?search=autumn tale
+
+            or
+
+            /nebula/v1/drama/?country=Japan
         """
         if not request.user.is_superuser:
 
@@ -34,6 +46,16 @@ class DramaViewSet(viewsets.ModelViewSet):
             valid = Token.objects.filter(key=request.META.get('HTTP_X_TOKEN'))
             if not valid:
                 return Response({'message': 'Token is not valid.'}, status=status.HTTP_403_FORBIDDEN)
+
+        drama = Drama.objects.filter(is_publish=True)
+
+        if request.query_params.get('search') and request.query_params.get('search') != "":
+            self.queryset = self.queryset.filter(title__icontains=request.query_params.get('search'))
+
+        if request.query_params.get('country') and request.query_params.get('country') != "":
+            self.queryset = self.queryset.filter(country=request.query_params.get('country'))
+
+        self.queryset = self.queryset.order_by('-updated')
 
         return super(DramaViewSet, self).list(request)
 
