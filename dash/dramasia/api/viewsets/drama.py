@@ -6,6 +6,11 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework import status
 from rest_framework.pagination import (LimitOffsetPagination, PageNumberPagination)
+from rest_framework.decorators import (api_view, authentication_classes,
+                                       detail_route, list_route,
+                                       parser_classes, permission_classes,
+                                       renderer_classes, action)
+
 
 class DramaViewSet(viewsets.ModelViewSet):
     queryset = Drama.objects.filter(is_publish=True)
@@ -80,6 +85,31 @@ class DramaViewSet(viewsets.ModelViewSet):
         return super(DramaViewSet, self).retrieve(request)
 
 
+
+    @action(detail=False, methods=['GET'])
+    def get_list_country(self, request):
+        """
+        Use this to get country list.
+        ---
+            Header:
+                x-token: "xxxxxx"
+        """
+        if not request.user.is_superuser:
+
+            if not request.META.get('HTTP_X_TOKEN'):
+                return Response({'message': 'Forbidden'}, status=status.HTTP_403_FORBIDDEN)
+
+            valid = Token.objects.filter(key=request.META.get('HTTP_X_TOKEN'))
+            if not valid:
+                return Response({'message': 'Token is not valid.'}, status=status.HTTP_403_FORBIDDEN)
+
+        country = Drama.objects.values('country').distinct()
+
+        data = {
+            'country': country
+        }
+
+        return Response(data, status=status.HTTP_200_OK)
 
 
 class GenreViewSet(viewsets.ModelViewSet):
