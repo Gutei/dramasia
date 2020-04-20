@@ -20,27 +20,29 @@
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
+
+		.content-article img {
+		max-width:100%;
+		}
+
+		.content-article a {
+		color:orange;
+		}
 	</style>
 {% endblock extra_css %}
 
 {% block content %}
 	<!-- page title -->
-	<section class="section section--first section--bg" data-bg="{{article.image.url}}">
+	<section class="section section--first section--bg" data-bg="" style="background-color:black; background:url({{article.image.url}}) no-repeat; background-position:center; background-size:cover; min-height:300px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<div class="section__wrap">
 						<!-- section title -->
-						<h1 class="section__title">{{article.title}}</h1>
+						<h1 class="section__title" style="padding:10px; text-shadow: 2px 2px 2px rgba(0, 0, 0, 1); background: rgba(0,0,0,0.5);"><b>{{article.title}}</b></h1>
 						<!-- end section title -->
-
-						<!-- breadcrumb -->
-						<ul class="breadcrumb">
-							<li class="breadcrumb__item"><a href="{% url 'home' %}">Home</a></li>
-							<li class="breadcrumb__item breadcrumb__item--active">Article</li>
-						</ul>
-						<!-- end breadcrumb -->
 					</div>
+					<p style="padding:10px; text-shadow: 2px 2px 2px rgba(0, 0, 0, 1); color:white; background: rgba(0,0,0,0.5);"><b><a href="{% url 'home' %}" style="color:white;">doramAsia</a> - ARTIKEL</b></p>
 				</div>
 			</div>
 		</div>
@@ -53,11 +55,15 @@
 
 	<!-- catalog -->
 	<div class="catalog">
-		<div class="container">
+		<br>
+		<div class="container" style="color:#fff;">
 			<div class="row">
 				<!-- card -->
-				<div class="col-12 col-sm-12 col-lg-12" style="color:#fff;">
-					<div class="card card--list"><br>
+				<div class="col-12 col-sm-12 col-lg-12" style="padding:20px; border-bottom:1px solid gray;">
+					doramAsia - {{article.updated|date:"d M F, H:m"}}<br>
+				</div>
+				<div class="col-12 col-sm-12 col-lg-7">
+					<div class="card card--list content-article"><br>
                         {{article.content|safe}}
 					</div>
 					<div class="card card--list"><br>
@@ -91,3 +97,7 @@
 	</div>
 	<!-- end catalog -->
 {% endblock content %}
+
+{% block extra_js %}
+
+{% endblock extra_js %}
