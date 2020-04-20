@@ -175,7 +175,7 @@
 						{% if movies.number|add:'-4' > 1 %}
 							<li {% if page != movies.number %} class="paginator__item" {% else %}
 						class="paginator__item paginator__item--active" {% endif %}>
-								<a href="?page={{ movies.number|add:'-5' }}">&hellip;</a>
+								<a href="?page={{ movies.number|add:'-5' }}"></a>
 							</li>
 						{% endif %}
 						
@@ -195,7 +195,7 @@
 						{% if movies.paginator.num_pages > movies.number|add:'4' %}
 							<li {% if page != movies.number %} class="paginator__item" {% else %}
 						class="paginator__item paginator__item--active" {% endif %}>
-								<a href="?page={{ movies.number|add:'5' }}">&hellip;</a>
+								<a href="?page={{ movies.number|add:'5' }}"></a>
 							</li>
 						{% endif %}
 
