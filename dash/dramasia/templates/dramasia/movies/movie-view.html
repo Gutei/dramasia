@@ -1,5 +1,6 @@
 {% extends "dramasia/index.html" %}
 {% load static %}
+{% load imagefit %}
 
 {% block meta_description %}
 	<meta name="description" content="{{ movie.description|striptags|safe|truncatewords:20 }}">
@@ -52,7 +53,7 @@
 							<!-- card cover -->
 							<div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
 								<div class="card__cover">
-									<img src="{{ movie.image.url }}" alt="{{ movie.title }}">
+									<img src="{{ movie.image.url|resize:'346x557' }}" alt="{{ movie.title }}">
 								</div>
 							</div>
 							<!-- end card cover -->
@@ -120,7 +121,7 @@
 										<!-- feature -->
 										<div class="col-12 col-md-4 col-lg-4">
 											<div class="feature">
-												<img class="feature__icon" src="{{ c.cast.image.url }}" style="width:75px;">
+												<img class="feature__icon" src="{{ c.cast.image.url|resize:'346x557' }}" alt="{{ c.cast.name }}, {{ c.cast_as }}, {{ movie.native_title }}" style="width:75px;">
 												<div style="margin-left:20px">
 													<h3 class="feature__title" style="float:-25px;">{{ c.cast.name }}</h3>
 													<p class="feature__text">{{ c.role }}</p>
