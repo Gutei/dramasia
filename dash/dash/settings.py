@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',
+    'imagefit',
 ]
 
 MIDDLEWARE = [
@@ -200,3 +201,25 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'home'
+
+# IMAGEFIT_ROOT = ""
+
+CELERY_RESULT_BACKEND = 'django-db'
+
+CELERY_CACHE_BACKEND = 'default'
+
+# enable/disable server cache
+IMAGEFIT_CACHE_ENABLED = True
+# set the cache name specific to imagefit with the cache dict
+IMAGEFIT_CACHE_BACKEND_NAME = 'imagefit'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/',
+        'TIMEOUT': 60,
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    },
+}

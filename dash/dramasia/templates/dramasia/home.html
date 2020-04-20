@@ -1,5 +1,6 @@
 {% extends "dramasia/index.html" %}
 {% load static %}
+{% load imagefit %}
 
 {% block meta_description %}
 	<meta name="description" content="">
@@ -55,7 +56,7 @@
 							<!-- card -->
 							<div class="card card--big">
 								<div class="card__cover">
-									<img src="{{t.image.url}}" alt="">
+									<img src="{{t.image.url|resize:'346x557'}}" alt="{{t.title}}">
 									<a href="{% url 'get_movie' t.slug %}" class="card__play">
 										<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
 									</a>
@@ -142,7 +143,7 @@
 								<div class="row">
 									<div class="col-12 col-sm-4">
 										<div class="card__cover">
-											<img src="{{d.image.url}}" alt="" height="250">
+											<img src="{{d.image.url|resize:'346x557'}}" alt="{{d.title}}" height="250">
 											<a href="{% url 'get_movie' d.slug %}" class="card__play">
 												<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
 											</a>

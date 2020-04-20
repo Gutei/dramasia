@@ -77,6 +77,7 @@ urlpatterns = [
                   url(r'^developer/stellarium', permission_required('is_staff')(schema_view)),
                   url(r'^nebula/v1/', include(router.urls)),
                   url(r'^api-auth/', include('rest_framework.urls',  namespace='rest_framework')),
+                  url(r'^imagefit/', include('imagefit.urls')),
 
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
