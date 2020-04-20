@@ -250,6 +250,10 @@
 										{% else %}
 										<img src="{% static 'dramasia/img/no-image/curtains.jpg' %}" alt="{{m.title}}">
 									{% endif %}
+
+									<a href="{% url 'get_movie' m.slug %}" class="card__play">
+										<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
+									</a>
 								</div>
 								<div class="card__content">
 									<h3 class="card__title"><a href="{% url 'get_movie' m.slug %}">{{ m.title }}</a></h3>
