@@ -30,7 +30,7 @@
 		<!-- home bg -->
 		<div class="owl-carousel home__bg">
 			{% for t in this_season %}
-				<div class="item home__cover" data-bg="{{t.image.url}}"></div>
+				<div class="item home__cover" data-bg="{{t.image.url|resize:'346x557'}}"></div>
 			{% endfor %}
 
 		</div>
