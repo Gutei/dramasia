@@ -165,18 +165,39 @@
 
 				<!-- paginator -->
 				<div class="col-12">
-					<ul class="paginator" style="width:100%;">
+					<ul class="paginator" style="width:100%; color:white;">
 						{% if movies.has_previous %}
 						<li class="paginator__item paginator__item--prev">
 							<a href="?page={{ movies.previous_page_number }}"><i class="icon ion-ios-arrow-back"></i></a>
 						</li>
 						{% endif %}
-
-						{% for page in movies.paginator.page_range %}
-						<li {% if page != movies.number %} class="paginator__item" {% else %}
+						
+						{% if movies.number|add:'-4' > 1 %}
+							<li {% if page != movies.number %} class="paginator__item" {% else %}
 						class="paginator__item paginator__item--active" {% endif %}>
-							<a href="?page={{page}}">{{ page }}</a></li>
+								<a href="?page={{ movies.number|add:'-5' }}">&hellip;</a>
+							</li>
+						{% endif %}
+						
+						{% for i in movies.paginator.page_range %}
+							{% if movies.number == i %}
+								<li {% if page != movies.number %} class="paginator__item" {% else %}
+						class="paginator__item paginator__item--active" {% endif %}>
+									{{ i }}</li>
+							{% elif i > movies.number|add:'-5' and i < movies.number|add:'5' %}
+								<li {% if page != movies.number %} class="paginator__item" {% else %}
+						class="paginator__item paginator__item--active" {% endif %}>
+									<a href="?page={{ i }}">{{ i }}</a>
+								</li>
+							{% endif %}
 						{% endfor %}
+						
+						{% if movies.paginator.num_pages > movies.number|add:'4' %}
+							<li {% if page != movies.number %} class="paginator__item" {% else %}
+						class="paginator__item paginator__item--active" {% endif %}>
+								<a href="?page={{ movies.number|add:'5' }}">&hellip;</a>
+							</li>
+						{% endif %}
 
 						{% if movies.has_next %}
 						<li class="paginator__item paginator__item--next">
