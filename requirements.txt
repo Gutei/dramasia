@@ -39,3 +39,4 @@ celery[redis]
 django-allauth
 django-cookies-samesite
 django-imagefit
+django-qrcode

@@ -1,6 +1,7 @@
 {% extends "dramasia/index.html" %}
 {% load static %}
 {% load imagefit %}
+{% load qr_tags %}
 
 {% block meta_description %}
 	<meta name="description" content="{{ movie.description|striptags|safe|truncatewords:20 }}">
@@ -92,9 +93,14 @@
 
 				<div class="col-12 col-xl-6">
 					<h3 style="color:#fff">Deskripsi</h3>
-					<div class="card__description--details" style="color:rgba(255,255,255,0.7)">
+					<div class="card__description" style="color:rgba(255,255,255,0.7)">
 						{{ movie.description|safe }}
+						{% if movie.website %}
+							<br>
+							{% qr_from_text movie.website "350x350" %}
+						{% endif %}
 					</div>
+
 				</div>
 
 				<div class="col-12" style="top:15px">

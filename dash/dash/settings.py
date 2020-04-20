@@ -39,12 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'django.contrib.sites',
     'ckeditor',
     'dramasia',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'imagefit',
+    'qrcode',
 ]
 
 MIDDLEWARE = [
