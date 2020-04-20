@@ -243,8 +243,11 @@
 						<div class="col-6 col-sm-4 col-lg-6">
 							<div class="card">
 								<div class="card__cover">
-									{% if m.image_url %}
-										<img src="{{ m.image.url|resize:'346x557' }}" alt="{{m.title}}">
+									{% if m.image %}
+										{{ m.image.url|resize:'346x557' }}
+										<div style="background:url({{ m.image.url|resize:'346x557' }}) no-repeat; background-size:cover; background-position:center; height:257px; width:160px;">
+
+										</div>
 										{% else %}
 										<img src="{% static 'dramasia/img/no-image/curtains.jpg' %}" alt="{{m.title}}">
 									{% endif %}
