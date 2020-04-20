@@ -24,10 +24,6 @@
 		.content-article img {
 		max-width:100%;
 		}
-
-		.content-article a {
-		color:orange;
-		}
 	</style>
 {% endblock extra_css %}
 
@@ -54,15 +50,15 @@
 	<!-- end filter -->
 
 	<!-- catalog -->
-	<div class="catalog">
+	<div class="catalog" style="background:#fff;">
 		<br>
-		<div class="container" style="color:#fff;">
+		<div class="container">
 			<div class="row">
 				<!-- card -->
 				<div class="col-12 col-sm-12 col-lg-12" style="padding:20px; border-bottom:1px solid gray;">
 					doramAsia - {{article.updated|date:"d M F, H:m"}}<br>
 				</div>
-				<div class="col-12 col-sm-12 col-lg-7">
+				<div class="col-12 col-sm-12 col-lg-12">
 					<div class="card card--list content-article"><br>
                         {{article.content|safe}}
 					</div>
