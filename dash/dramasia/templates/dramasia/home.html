@@ -56,7 +56,9 @@
 							<!-- card -->
 							<div class="card card--big">
 								<div class="card__cover">
-									<img src="{{t.image.url|resize:'346x557'}}" alt="{{t.title}}">
+									<div style="background:url({{t.image.url|resize:'346x557'}}) no-repeat; background-size:cover; background-position:center; height:357px; width:255px;">
+
+									</div>
 									<a href="{% url 'get_movie' t.slug %}" class="card__play">
 										<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
 									</a>
@@ -143,7 +145,9 @@
 								<div class="row">
 									<div class="col-12 col-sm-4">
 										<div class="card__cover">
-											<img src="{{d.image.url|resize:'346x557'}}" alt="{{d.title}}" height="250">
+											<div style="background:url({{d.image.url|resize:'346x557'}}) no-repeat; background-size:cover; background-position:center; height:257px; width:160px;">
+
+											</div>
 											<a href="{% url 'get_movie' d.slug %}" class="card__play">
 												<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
 											</a>
