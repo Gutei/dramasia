@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'django.contrib.sites',
     'ckeditor',
+    'django_celery_results',
     'dramasia',
     'rest_framework',
     'rest_framework.authtoken',
