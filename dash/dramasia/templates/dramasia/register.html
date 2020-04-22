@@ -17,37 +17,38 @@
 {% endblock navbar %}
 
 {% block content %}
-	<div class="sign section--bg" data-bg="{% static 'dramasia/img/section/section.jpg' %}">
+	<div class="sign section--bg" data-bg="">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<div class="sign__content">
 						<!-- registration form -->
-						<form action="#" class="sign__form">
+						<form action="{% url 'register' %}" method="post" class="sign__form">
+							{% csrf_token %}
 							<a href="{% url 'home' %}" class="sign__logo">
 								<img src="{% static 'dramasia/img/Logo Dramasia 2.png' %}" alt="doramasia">
 							</a>
 
 							<div class="sign__group">
-								<input type="text" class="sign__input" placeholder="Name">
+								<input type="text" name="username" class="sign__input" pattern="[a-zA-Z0-9-]+" placeholder="Username">
 							</div>
 
 							<div class="sign__group">
-								<input type="text" class="sign__input" placeholder="Email">
+								<input type="email" name="email" class="sign__input" placeholder="Email">
 							</div>
 
 							<div class="sign__group">
-								<input type="password" class="sign__input" placeholder="Password">
+								<input type="password" name="password" class="sign__input" minlength="8" placeholder="Password">
 							</div>
 
-							<div class="sign__group sign__group--checkbox">
-								<input id="remember" name="remember" type="checkbox" checked="checked">
-								<label for="remember">I agree to the <a href="#">Privacy Policy</a></label>
-							</div>
+<!--							<div class="sign__group sign__group&#45;&#45;checkbox">-->
+<!--								<input id="remember" name="remember" type="checkbox" checked="checked">-->
+<!--								<label for="remember">I agree to the <a href="#">Privacy Policy</a></label>-->
+<!--							</div>-->
 							
-							<button class="sign__btn" type="button">Daftar</button>
+							<button class="sign__btn" type="submit">Daftar</button>
 
-							<span class="sign__text">Sudah Memiliki Akun? <a href="{% url 'register' %}">Masuk !</a></span>
+							<span class="sign__text">Sudah Memiliki Akun? <a href="{% url 'login' %}">Masuk !</a></span>
 						</form>
 						<!-- registration form -->
 					</div>
