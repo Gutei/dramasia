@@ -13,7 +13,7 @@
 {% endblock meta_description %}
 
 {% block meta_keyword %}
-	<meta name="keywords" content="">
+	<meta name="keywords" content="asian drama, korean drama, forum drama, drama database, doaramasia, japanese drama, dorama">
 {% endblock meta_keyword %}
 
 {% block title %}
@@ -26,6 +26,10 @@
 			background: -webkit-linear-gradient(#c40886, #fc65d7);
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
+		}
+
+		.content-article img {
+		max-width:100%;
 		}
 	</style>
 {% endblock extra_css %}
@@ -54,7 +58,7 @@
 
 							<!-- card content -->
 							<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-								<div class="card__description" style="color:rgba(255,255,255,0.7)">
+								<div class="card__description content-article" style="color:rgba(255,255,255,0.7)">
                                     {{ article.content|safe }}
                                 </div>
 							</div>
@@ -102,9 +106,6 @@
 							<li class="nav-item">
 								<a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Komentar</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Reviews</a>
-							</li>
 						</ul>
 						<!-- end content tabs nav -->
 
@@ -118,7 +119,6 @@
 							<div class="content__mobile-tabs-menu dropdown-menu" aria-labelledby="mobile-tabs">
 								<ul class="nav nav-tabs" role="tablist">
 									<li class="nav-item"><a class="nav-link active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Komentar</a></li>
-									<li class="nav-item"><a class="nav-link" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-1" aria-selected="false">Review</a></li>
 								</ul>
 							</div>
 						</div>
@@ -158,14 +158,6 @@
 									</script>
 									<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 								</div>
-								<!-- end reviews -->
-							</div>
-						</div>
-
-						<div class="tab-pane fade show active" id="tab-2" role="tabpanel" aria-labelledby="2-tab">
-							<div class="row">
-								<!-- reviews -->
-								<p style="color:white;">No Review.</p>
 								<!-- end reviews -->
 							</div>
 						</div>
