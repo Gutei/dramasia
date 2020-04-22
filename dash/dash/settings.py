@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'imagefit',
     'qrcode',
+    'django_ace',
 ]
 
 MIDDLEWARE = [

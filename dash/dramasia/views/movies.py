@@ -1,8 +1,10 @@
 import random
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
-from dramasia.models import Drama, DramaCast, Genre, DramaGenre
+from dramasia.models import Drama, DramaCast, Genre, DramaGenre, SiteTemplate
 from django.http import Http404
+from django.template import Template, Context
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 
 
 def listing_movie(request):
@@ -40,6 +42,13 @@ def listing_movie(request):
         'countries': country,
         'second_head': second_head,
     }
+
+    template = SiteTemplate.objects.filter(code='MoviesSeriesList', is_active=True).first()
+    if template:
+        t = Template(template.content)
+        context = Context(context)
+        return HttpResponse(t.render(context))
+
     return render(request, 'dramasia/movies/movie-list.html', context)
 
 
@@ -93,6 +102,13 @@ def get_movie(request, pk):
         'movie': movie,
         'cast': cast
     }
+
+    template = SiteTemplate.objects.filter(code='MoviesSeriesDetail', is_active=True).first()
+    if template:
+        t = Template(template.content)
+        context = Context(context)
+        return HttpResponse(t.render(context))
+
     return render(request, 'dramasia/movies/movie-view.html', context)
 
 

@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from dramasia.models import Drama, Season, DramaSeason
+from dramasia.models import Drama, Season, DramaSeason, SiteTemplate
+from django.template import Template, Context
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 
 def home(request):
     # this_season = Drama.objects.filter(is_publish=True).order_by('-updated')[:8]
@@ -14,15 +16,34 @@ def home(request):
         'this_season': ds_list,
         'drama': drama
     }
+
+    template = SiteTemplate.objects.filter(code='Home', is_active=True).first()
+    if template:
+        t = Template(template.content)
+        context = Context(context)
+        return HttpResponse(t.render(context))
+
     return render(request, 'dramasia/home.html', context)
 
 
 def disclaimer(request):
     context = {}
 
+    template = SiteTemplate.objects.filter(code='Disclaimer', is_active=True).first()
+    if template:
+        t = Template(template.content)
+        context = Context(context)
+        return HttpResponse(t.render(context))
+
     return render(request, 'dramasia/disclaimer.html', context)
 
 def privacy(request):
     context = {}
+
+    template = SiteTemplate.objects.filter(code='Privacy', is_active=True).first()
+    if template:
+        t = Template(template.content)
+        context = Context(context)
+        return HttpResponse(t.render(context))
 
     return render(request, 'dramasia/privacy-policy.html', context)
