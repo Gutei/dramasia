@@ -12,7 +12,7 @@ def get_article(request, slug):
     context = {
         'article': article,
     }
-    return render(request, 'dramasia/article/get_article.html', context)
+    return render(request, 'dramasia/article/get_article_2.html', context)
 
 
 def list_article(request):
