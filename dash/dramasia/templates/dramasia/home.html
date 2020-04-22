@@ -144,10 +144,8 @@
 							<div class="card card--list">
 								<div class="row">
 									<div class="col-12 col-sm-4">
-										<div class="card__cover">
-											<div style="background:url({{d.image.url|resize:'346x557'}}) no-repeat; background-size:cover; background-position:center; height:257px; width:160px;">
+										<div class="card__cover" style="background:url({{d.image.url|resize:'346x557'}}) no-repeat; background-size:cover; background-position:center; height:257px;">
 
-											</div>
 											<a href="{% url 'get_movie' d.slug %}" class="card__play">
 												<img src="{% static 'dramasia/img/Ico Doramasia.jpg' %}" alt="logo doramasia" style="height:40px; width:40px; border-radius:100px;">
 											</a>
