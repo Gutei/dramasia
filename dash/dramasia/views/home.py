@@ -52,3 +52,8 @@ def privacy(request):
 def get_sitemaps(request):
     template_name = 'dramasia/sitemap.xml'
     return render(request, template_name, content_type="text/xml")
+
+def robots_txt(request):
+    context = {}
+
+    return render(request, 'dramasia/robots.txt', context, content_type="text/plain")
