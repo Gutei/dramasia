@@ -100,7 +100,8 @@ def get_movie(request, pk):
     context = {
         'movies': shuffle_ses_anime,
         'movie': movie,
-        'cast': cast
+        'cast': cast,
+        'genres': genres,
     }
 
     template = SiteTemplate.objects.filter(code='MoviesSeriesDetail', is_active=True).first()
