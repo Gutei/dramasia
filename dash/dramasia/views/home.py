@@ -47,3 +47,8 @@ def privacy(request):
         return HttpResponse(t.render(context))
 
     return render(request, 'dramasia/privacy-policy.html', context)
+
+
+def get_sitemaps(request):
+    template_name = 'dramasia/sitemap.xml'
+    return render(request, template_name, content_type="text/xml")

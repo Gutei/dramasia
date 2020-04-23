@@ -78,6 +78,7 @@ urlpatterns = [
                   url(r'^nebula/v1/', include(router.urls)),
                   url(r'^api-auth/', include('rest_framework.urls',  namespace='rest_framework')),
                   url(r'^imagefit/', include('imagefit.urls')),
+                  url(r'^sitemap.xml', views.get_sitemaps, name='sitemaps'),
 
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
