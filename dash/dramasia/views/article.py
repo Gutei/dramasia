@@ -13,6 +13,9 @@ def get_article(request, slug):
 
     context = {
         'article': article,
+        'request': {
+            'user': request.user,
+        }
     }
 
     template = SiteTemplate.objects.filter(code='ArticleDetail', is_active=True).first()
@@ -33,6 +36,9 @@ def list_article(request):
 
     context = {
         'articles': article_pages,
+        'request': {
+            'user': request.user,
+        }
     }
 
     template = SiteTemplate.objects.filter(code='ArticleList', is_active=True).first()

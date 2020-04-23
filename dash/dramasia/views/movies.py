@@ -41,6 +41,9 @@ def listing_movie(request):
         'genres': genre,
         'countries': country,
         'second_head': second_head,
+        'request': {
+            'user': request.user,
+        }
     }
 
     template = SiteTemplate.objects.filter(code='MoviesSeriesList', is_active=True).first()
@@ -66,6 +69,9 @@ def griding_movie(request):
     movies_pages = paginator.get_page(page)
     context = {
         'movies': movies_pages,
+        'request': {
+            'user': request.user,
+        }
     }
     return render(request, 'dramasia/movies/movie-grid.html', context)
 
@@ -102,6 +108,9 @@ def get_movie(request, pk):
         'movie': movie,
         'cast': cast,
         'genres': genres,
+        'request': {
+            'user': request.user,
+        }
     }
 
     template = SiteTemplate.objects.filter(code='MoviesSeriesDetail', is_active=True).first()

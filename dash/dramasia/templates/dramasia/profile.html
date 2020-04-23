@@ -1,0 +1,258 @@
+{% extends "dramasia/index.html" %}
+{% load static %}
+{% load imagefit %}
+{% load qr_tags %}
+
+{% block meta_description %}
+	<meta name="description" content="Bergabunglah bersama {{ profile.user.username|safe }} di doramasia.com">
+	<meta property="og:title" content="{{ profile.username|safe }}"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="doramAsia" />
+    {% if profile.photo_profile %}
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ profile.photo_profile.url }}">
+    {% endif %}
+    <meta property="og:description" content="Bergabunglah bersama {{ profile.user.username|safe }} di doramasia.com">
+{% endblock meta_description %}
+
+{% block meta_keyword %}
+	<meta name="keywords" content="">
+{% endblock meta_keyword %}
+
+{% block title %}
+	<title>{{ profile.user.username|safe }}@doramasia</title>
+{% endblock title %}
+
+{% block extra_css %}
+	<style>
+		.title-dramasia {
+			background: -webkit-linear-gradient(#c40886, #fc65d7);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+
+		a {
+			color:orange;
+		}
+
+		[type="date"] {
+		  background: #fff
+			url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)
+			97% 50% no-repeat;
+			color:black;
+		}
+		[type="date"]::-webkit-inner-spin-button {
+		  display: none;
+		}
+		[type="date"]::-webkit-calendar-picker-indicator {
+		  opacity: 0;
+		}
+
+		input {
+		  border: none;
+		  background: none;
+		  padding: 3px 5px;
+		  width: 190px;
+		  color:white;
+		}
+	</style>
+{% endblock extra_css %}
+
+{% block content %}
+
+	<!-- details -->
+	<section class="section details">
+		<!-- details background -->
+        {% if profile.photo_profile %}
+		<div class="details__bg" data-bg="{{ profile.photo_profile.url }}"></div>
+        {% endif %}
+
+		<!-- end details background -->
+
+		<!-- details content -->
+		<div class="container">
+			<div class="row">
+				<!-- title -->
+				<div class="col-12">
+					<h1 class="details__title">{{ profile.user.username }} @ doramasia</h1>
+				</div>
+				<!-- end title -->
+
+				<!-- content -->
+				<div class="col-12 col-xl-6">
+					<div class="card card--details">
+						<div class="row">
+							<!-- card cover -->
+							<div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-5">
+								<div class="card__cover" style="color:white; font-size:80px;">
+                                    {% if profile.photo_profile %}
+									<img class="photo-display" src="{{ profile.photo_profile.url|resize:'346x557' }}" alt="{{ profile.username }}">
+                                    {% else %}
+                                    <center>
+                                        <a href="#" class="photo-display" style="color:white;">
+                                    <span class="iconify" data-icon="bx:bx-user-circle" data-inline="false"></span>
+                                            <br>
+
+                                        </a>
+                                    </center>
+                                    {% endif %}
+
+                                    <form method="post" action="{% url 'edit_profile' profile.id %}" enctype="multipart/form-data" style="display:none;">
+                                        {% csrf_token %}
+                                        <input type="file" class="photo-profile" name="photo">
+                                        <input type="submit" class="submit-photo">
+                                    </form>
+								</div>
+							</div>
+							<!-- end card cover -->
+
+							<!-- card content -->
+							<div class="col-12 col-sm-8 col-md-8 col-lg-9 col-xl-7">
+								<div class="card__content">
+									<div class="card__wrap">
+										<ul class="card__list">
+											<li>Profile</li>
+										</ul>
+									</div>
+
+									<li class="card__meta">
+										<li class="price__item"><span>Email: {{ profile.user.email }}</span></li>
+									<li class="price__item"><span>Tanggal Lahir: {% if profile.birth_date %} <a class="bod"> {{profile.birth_date}}</a> {% else %} <a class="bod"> -</a> {% endif %}</span>
+											<a href="#" data-toggle="modal" data-target="#birth_date" id="pencil-ttl">
+												<span class="iconify" data-icon="bx:bx-pencil" data-inline="false"></span>
+											</a>
+											<form id="form-ttl" method="post" action="{% url 'edit_profile' profile.id %}" style="display:none;">{% csrf_token %}
+												<input type="date" name="birth_date" class="form-control" autocomplete="off"
+																	   value="{{ profile.birth_date|date:'m/d/Y' }}">
+												<button type="submit" class="btn btn-primary" style="background:none; color:white;">Simpan</button>
+											</form>
+										</li>
+										<li class="price__item" style="text-align:right;">
+                                        {% if profile.gender == 1 %}
+											<span>Gender:<a class="gndr"> Laki-laki</a></span> <a href="#" class="pencil-gender">
+												<span class="iconify" data-icon="bx:bx-pencil" data-inline="false"></span>
+											</a>
+                                        {% elif profile.gender == 2 %}
+											<span>Gender: <a class="gndr"> Perempuan</a></span> <a href="#" class="pencil-gender">
+												<span class="iconify" data-icon="bx:bx-pencil" data-inline="false"></span>
+											</a>
+                                        {% elif not profile.gender %}
+											<span>Gender: <a class="gndr"> -</a></span> <a href="#" class="pencil-gender">
+												<span class="iconify" data-icon="bx:bx-pencil" data-inline="false"></span>
+											</a>
+                                        {% endif %}
+
+											<form id="form-gender" method="post" action="{% url 'edit_profile' profile.id %}" style="display:none;">{% csrf_token %}
+												<select name="gender" class="form-control">
+													<option value="1">Laki-laki</option>
+													<option value="2">Perempuan</option>
+												</select>
+												<button type="submit" class="btn btn-primary" style="background:none; color:white;">Simpan</button>
+											</form>
+										</li>
+
+									</ul>
+
+								</div>
+							</div>
+							<!-- end card content -->
+						</div>
+					</div>
+				</div>
+				<!-- end content -->
+
+				<div class="col-12 col-xl-6">
+					<h3 style="color:#fff">Biodata <a href="#" class="pencil-biodata">
+												<span class="iconify" data-icon="bx:bx-pencil" data-inline="false"></span>
+											</a></h3>
+					<div style="color:rgba(255,255,255,0.7)">
+						<div class="biodata-sect">{{ profile.biodata|safe }}</div>
+						<form class="form-biodata" method="post" action="{% url 'edit_profile' profile.id %}" style="display:none">{% csrf_token %}
+							<div class="group-in">
+								<textarea class="form-control mce" name="biodata">{{ profile.biodata|safe }}</textarea>
+							</div>
+							<div class="group-in text-right">
+								<button type="submit" class="btn btn-primary" style="background:none; color:white;">Simpan</button>
+							</div>
+						</form>
+					</div>
+
+				</div>
+
+				<div class="col-12" style="top:15px">
+					<!-- share -->
+					<div class="details__share">
+					</div>
+					<!-- end share -->
+				</div>
+
+			</div>
+		</div>
+		<!-- end details content -->
+	</section>
+	<!-- end details -->
+
+	<!-- content -->
+
+
+	<!-- end content -->
+
+{% endblock content %}
+
+{% block extra_js %}
+	<script id="dsq-count-scr" src="//doramasia-id.disqus.com/count.js" async></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js" async></script>
+	<script src="https://cdn.tiny.cloud/1/1zn4egdiw66btnzwz9jkgk930l7vp0aw270sppxtdms538w9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({selector:'.mce',
+                          plugins: "print preview powerpaste casechange importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker imagetools textpattern noneditable help formatpainter permanentpen pageembed charmap linkchecker emoticons advtable",
+                          height: 300,
+                          toolbar: 'undo redo | insertfile image media | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons'
+                          });
+    </script>
+	<script>
+		$(document).ready(() => {
+
+            $('.photo-display').click(() => {
+                $('.photo-profile').click();
+            });
+
+            $('#pencil-ttl').click(() => {
+                $('#form-ttl').show();
+                $('.bod').hide();
+            });
+
+            $('.pencil-gender').click(() => {
+                $('#form-gender').show();
+                $('.gndr').hide();
+            });
+
+            $('.pencil-biodata').click(() => {
+                $('.form-biodata').show();
+                $('.biodata-sect').hide();
+            });
+
+            $('.photo-profile').change(() => {
+                $('.submit-photo').click();
+            });
+
+			$('#rate-val').val($('#form__slider-value').text())
+
+			var myElement = document.getElementById('form__slider-value');
+			if(window.addEventListener) {
+			   // Normal browsers
+			   myElement.addEventListener('DOMSubtreeModified', contentChanged, false);
+			} else
+			   if(window.attachEvent) {
+				  // IE
+				  myElement.attachEvent('DOMSubtreeModified', contentChanged);
+			   }
+
+			function contentChanged() {
+			   // this function will run each time the content of the DIV changes
+			   $('#rate-val').val($('#form__slider-value').text())
+			}
+
+
+
+		})
+	</script>
+{% endblock extra_js %}

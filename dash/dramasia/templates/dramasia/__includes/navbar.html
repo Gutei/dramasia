@@ -48,15 +48,18 @@
 <!--								</li>-->
 
 								<!-- dropdown -->
-<!--								<li class="dropdown header__nav-item">-->
-<!--										<a class="dropdown-toggle header__nav-link header__nav-link&#45;&#45;more" href="#" role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon ion-ios-more"></i></a>-->
+								{% if request.user.is_anonymous %}
+								{% else %}
+								<li class="dropdown header__nav-item">
+										<a class="dropdown-toggle header__nav-link header__nav-link--more" href="#" role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon ion-ios-more"></i></a>
 
-<!--									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">-->
-<!--&lt;!&ndash;										<li><a href="about.html">About</a></li>&ndash;&gt;-->
-<!--										<li><a href="{% url 'login' %}">Masuk</a></li>-->
-<!--										<li><a href="{% url 'register' %}">Daftar</a></li>-->
-<!--									</ul>-->
-<!--								</li>-->
+									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">
+<!--										<li><a href="about.html">About</a></li>-->
+										<li><a href="{% url 'profile' %}">{{request.user.email}}</a></li>
+									</ul>
+								</li>
+								{% endif %}
+
 								<!-- end dropdown -->
 							</ul>
 							<!-- end header nav -->

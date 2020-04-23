@@ -80,6 +80,8 @@ urlpatterns = [
                   url(r'^imagefit/', include('imagefit.urls')),
                   url(r'^sitemap.xml', views.get_sitemaps, name='sitemaps'),
                   url(r'^robots.txt', views.robots_txt, name='robots'),
+                  url(r'^profile', views.profile, name='profile'),
+                  url(r'^edit-profile/(?P<id>[^/]+)/$', views.edit_profile, name='edit_profile'),
 
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,

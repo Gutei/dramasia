@@ -14,7 +14,10 @@ def home(request):
     drama = Drama.objects.filter(is_publish=True).order_by('-updated')[:6]
     context = {
         'this_season': ds_list,
-        'drama': drama
+        'drama': drama,
+        'request': {
+            'user': request.user,
+        }
     }
 
     template = SiteTemplate.objects.filter(code='Home', is_active=True).first()
@@ -27,7 +30,11 @@ def home(request):
 
 
 def disclaimer(request):
-    context = {}
+    context = {
+        'request': {
+            'user': request.user,
+        }
+    }
 
     template = SiteTemplate.objects.filter(code='Disclaimer', is_active=True).first()
     if template:
@@ -38,7 +45,11 @@ def disclaimer(request):
     return render(request, 'dramasia/disclaimer.html', context)
 
 def privacy(request):
-    context = {}
+    context = {
+        'request': {
+            'user': request.user,
+        }
+    }
 
     template = SiteTemplate.objects.filter(code='Privacy', is_active=True).first()
     if template:
