@@ -199,6 +199,15 @@ class RegisterUserViewSet(viewsets.ModelViewSet):
             Header:
                 {} - no need
         """
+
+        cek_username = User.objects.filter(username=request.data.get('username')).first()
+        if cek_username:
+            return Response({"messages": "Username is exist"}, status=HTTP_400_BAD_REQUEST)
+
+        cek_email = User.objects.filter(username=request.data.get('email')).first()
+        if cek_email:
+            return Response({"messages": "Email is used"}, status=HTTP_400_BAD_REQUEST)
+
         a = super(RegisterUserViewSet, self).create(request)
         user = User.objects.filter(username=request.data.get('username')).first()
         if user:
